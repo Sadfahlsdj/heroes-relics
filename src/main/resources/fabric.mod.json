@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"hrelics.ExampleMod"
+			"hrelics.HeroesRelics"
 		]
 	},
 	"mixins": [

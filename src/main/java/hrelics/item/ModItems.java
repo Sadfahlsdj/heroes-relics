@@ -1,4 +1,4 @@
-package hrelics.items;
+package hrelics.item;
 
 import hrelics.HeroesRelics;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;

@@ -1,4 +1,4 @@
-package hrelics.items.custom;
+package hrelics.item.custom;
 
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;

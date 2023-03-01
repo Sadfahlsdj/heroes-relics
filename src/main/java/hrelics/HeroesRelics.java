@@ -1,12 +1,10 @@
 package hrelics;
 
-import hrelics.items.ModItems;
+import hrelics.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static hrelics.items.ModItems.registerModItems;
 
 public class HeroesRelics implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
