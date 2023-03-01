@@ -1,0 +1,2 @@
+every directory named placeholder is to force expanded view
+it's fucking stupid but required I guess
