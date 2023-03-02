@@ -1,5 +1,8 @@
 {
   "item.hrelics.areadbhar": "Areadbhar",
 
-  "itemGroup.hrelics.relicweapon": "Relic Weapons"
+  "itemGroup.hrelics.relicweapon": "Relic Weapons",
+
+  "key.category.hrelics.heroesrelics": "Heroes' Relics Keys",
+  "key.hrelics.combatart": "Combat Art"
 }

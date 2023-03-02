@@ -17,7 +17,11 @@
 	"entrypoints": {
 		"main": [
 			"hrelics.HeroesRelics"
+		],
+		"client": [
+			"hrelics.HrelicsClient"
 		]
+
 	},
 	"mixins": [
 		"heroes-relics.mixins.json"
