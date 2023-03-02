@@ -1,6 +1,7 @@
 package hrelics;
 
 import hrelics.item.ModItems;
+import hrelics.networking.ModMessages;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -16,9 +17,10 @@ public class HeroesRelics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// asafasdfdfsadssfsadffdd
 		ModItems.registerModItems();
 
-		LOGGER.info("Hello Fabric world!");
+		//LOGGER.info("Hello Fabric world!");
+		ModMessages.registerC2SPackets();
+
 	}
 }
