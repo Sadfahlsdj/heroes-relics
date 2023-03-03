@@ -12,6 +12,9 @@ public class ModItems {
     public static final Item Areadbhar = registerItem("areadbhar", new SwordItem(ModToolMaterials.UMBRAL_STEEL,
             7, 1.3f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
+    public static final Item Thunderbrand = registerItem("thunderbrand", new SwordItem(ModToolMaterials.UMBRAL_STEEL,
+            4, 1.6f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+
     //important
 
     private static Item registerItem(String name, Item item){

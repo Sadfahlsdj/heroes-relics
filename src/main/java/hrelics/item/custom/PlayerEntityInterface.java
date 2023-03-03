@@ -14,4 +14,18 @@ public interface PlayerEntityInterface {
     public default void decrementAtrocityHits(){
 
     }
+
+    int lightningHits = 0;
+
+    public default void setLightningHits(int a){
+
+    }
+
+    public default int getLightningHits(){
+        return lightningHits;
+    }
+
+    public default void decrementLightningHits(){
+
+    }
 }

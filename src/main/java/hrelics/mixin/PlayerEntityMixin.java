@@ -5,6 +5,7 @@ import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -12,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements PlayerEntityInterface {
+    //atrocity
+    @Unique
     int atrocityHits = 0;
 
     public void setAtrocityHits(int a){
@@ -24,6 +27,21 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
 
     public void decrementAtrocityHits(){
         atrocityHits--;
+    }
+
+    //foudroyant strike
+    @Unique
+    int lightningHits = 0;
+    public void setLightningHits(int a){
+        atrocityHits = a;
+    }
+
+    public int getLightningHits(){
+        return lightningHits;
+    }
+
+    public void decrementLightningHits(){
+        lightningHits--;
     }
 
     Entity t;
