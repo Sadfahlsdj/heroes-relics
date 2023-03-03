@@ -1,10 +1,18 @@
 package hrelics.event;
 
+import hrelics.item.ModItems;
+import hrelics.networking.packet.AtrocityC2SPacket;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.Packet;
 import org.lwjgl.glfw.GLFW;
+
+import static hrelics.networking.ModMessages.ATROCITY;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_HEROESRELICS = "key.category.hrelics.heroesrelics";
@@ -14,8 +22,11 @@ public class KeyInputHandler {
 
     public static void registerKeyInputs(){
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            PlayerEntity p = client.player;
             if(combatArt.wasPressed()){
-                //combat art packets go under here
+               if(p.getMainHandStack().isOf(ModItems.Areadbhar)){
+                   ((ClientPlayerEntity) p).networkHandler.sendPacket((Packet<?>) ATROCITY);
+               }
             }
         });
     }
