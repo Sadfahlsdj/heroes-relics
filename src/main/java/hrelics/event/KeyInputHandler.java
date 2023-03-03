@@ -1,9 +1,12 @@
 package hrelics.event;
 
 import hrelics.item.ModItems;
+import hrelics.networking.ModMessages;
 import hrelics.networking.packet.AtrocityC2SPacket;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
@@ -25,7 +28,7 @@ public class KeyInputHandler {
             PlayerEntity p = client.player;
             if(combatArt.wasPressed()){
                if(p.getMainHandStack().isOf(ModItems.Areadbhar)){
-                   ((ClientPlayerEntity) p).networkHandler.sendPacket((Packet<?>) ATROCITY);
+                   ClientPlayNetworking.send(ATROCITY, PacketByteBufs.create());
                }
             }
         });
