@@ -16,6 +16,7 @@ import net.minecraft.network.Packet;
 import org.lwjgl.glfw.GLFW;
 
 import static hrelics.networking.ModMessages.ATROCITY;
+import static hrelics.networking.ModMessages.FOUDROYANT;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_HEROESRELICS = "key.category.hrelics.heroesrelics";
@@ -29,6 +30,9 @@ public class KeyInputHandler {
             if(combatArt.wasPressed()){
                if(p.getMainHandStack().isOf(ModItems.Areadbhar)){
                    ClientPlayNetworking.send(ATROCITY, PacketByteBufs.create());
+               }
+               else if(p.getMainHandStack().isOf(ModItems.Thunderbrand)){
+                   ClientPlayNetworking.send(FOUDROYANT, PacketByteBufs.create());
                }
             }
         });

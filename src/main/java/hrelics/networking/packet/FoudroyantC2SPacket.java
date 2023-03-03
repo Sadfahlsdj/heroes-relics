@@ -1,5 +1,6 @@
 package hrelics.networking.packet;
 
+import hrelics.HeroesRelics;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.entity.damage.DamageSource;
@@ -15,5 +16,8 @@ public class FoudroyantC2SPacket {
         player.damage(DamageSource.OUT_OF_WORLD, 4);
 
         ((PlayerEntityInterface) player).setLightningHits(2);
+
+        //testing
+        //HeroesRelics.LOGGER.info(String.valueOf(((PlayerEntityInterface) player).getLightningHits()));
     }
 }

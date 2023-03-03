@@ -1,5 +1,6 @@
 package hrelics.item.custom;
 
+import hrelics.HeroesRelics;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
@@ -18,8 +19,15 @@ public class ThunderbrandItem extends SwordItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
+        //testing again
+        //HeroesRelics.LOGGER.info("{}",
+                ((PlayerEntityInterface) attacker).getLightningHits());
        //lightning spawning goes here
         if(((PlayerEntityInterface) attacker).getLightningHits() > 0){
+            //testing
+            //HeroesRelics.LOGGER.info("if you see this message the if statement in ThunderbrandItem suceeded");
+
+            //lightning bolt spawning & shit
             LightningEntity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, target.getWorld());
             lightningEntity.setPos(target.getX(), target.getY(), target.getZ());
 

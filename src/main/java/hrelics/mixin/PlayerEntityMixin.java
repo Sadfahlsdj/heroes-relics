@@ -33,7 +33,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     @Unique
     int lightningHits = 0;
     public void setLightningHits(int a){
-        atrocityHits = a;
+        lightningHits = a;
     }
 
     public int getLightningHits(){
