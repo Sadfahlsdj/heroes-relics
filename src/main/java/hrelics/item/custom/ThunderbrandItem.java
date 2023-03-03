@@ -20,8 +20,7 @@ public class ThunderbrandItem extends SwordItem {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         //testing again
-        //HeroesRelics.LOGGER.info("{}",
-                ((PlayerEntityInterface) attacker).getLightningHits());
+        //HeroesRelics.LOGGER.info("{}",((PlayerEntityInterface) attacker).getLightningHits());
        //lightning spawning goes here
         if(((PlayerEntityInterface) attacker).getLightningHits() > 0){
             //testing
