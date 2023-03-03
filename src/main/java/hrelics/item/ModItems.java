@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 public class ModItems {
 
     public static final Item Areadbhar = registerItem("areadbhar", new SwordItem(ModToolMaterials.UMBRAL_STEEL,
-            8, 2f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+            7, 1.3f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
     //important
 
