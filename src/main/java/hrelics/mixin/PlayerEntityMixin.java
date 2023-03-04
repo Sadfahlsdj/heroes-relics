@@ -44,6 +44,19 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         lightningHits--;
     }
 
+    //burning quake
+    int fireHits = 0;
+    public void setFireHits(int a){
+        fireHits = a;
+    }
+    public int getFireHits(){
+        return fireHits;
+    }
+
+    public void decrementFireHits(){
+        fireHits--;
+    }
+
     Entity t;
 
     @Inject(method = "attack", at = @At("HEAD"))

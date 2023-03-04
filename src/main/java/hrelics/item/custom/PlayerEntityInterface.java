@@ -29,9 +29,17 @@ public interface PlayerEntityInterface {
 
     }
     //burning quake
-
-
-    public default void setBoostedTicks(int i){
+    int fireHits = 0;
+    public default void setFireHits(int a){
 
     }
+    public default int getFireHits(){
+        return fireHits;
+    }
+
+    public default void decrementFireHits(){
+
+    }
+
+
 }

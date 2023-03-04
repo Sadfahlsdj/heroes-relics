@@ -17,7 +17,12 @@ public class LuinItem extends SwordItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
-        target.setFireTicks(100);
+        if(((PlayerEntityInterface) attacker).getFireHits() > 0){
+            target.setFireTicks(100);
+            ((LivingEntityInterface) target).setBoostedTicks(100);
+            ((PlayerEntityInterface) attacker).decrementFireHits();
+        }
+
         return super.postHit(stack, target, attacker);
     }
 }

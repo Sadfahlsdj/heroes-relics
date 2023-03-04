@@ -1,6 +1,7 @@
 package hrelics.networking.packet;
 
 import hrelics.HeroesRelics;
+import hrelics.item.custom.LivingEntityInterface;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.entity.damage.DamageSource;
@@ -17,7 +18,7 @@ public class BurningQuakeC2SPacket {
 
         player.damage(DamageSource.OUT_OF_WORLD, 3);
 
-        ((PlayerEntityInterface) player).setBoostedTicks(100);
+        ((PlayerEntityInterface) player).setFireHits(1);
 
 
 
