@@ -29,6 +29,8 @@ public interface PlayerEntityInterface {
 
     }
     //burning quake
+
+
     public default void setBoostedTicks(int i){
 
     }

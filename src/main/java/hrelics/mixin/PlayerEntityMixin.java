@@ -59,6 +59,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
             f += 15;
             ((PlayerEntityInterface) user).decrementAtrocityHits();
         }
+
         return f;
     }
 }

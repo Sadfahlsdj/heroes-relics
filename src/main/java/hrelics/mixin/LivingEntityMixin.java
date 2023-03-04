@@ -1,5 +1,6 @@
 package hrelics.mixin;
 
+import hrelics.HeroesRelics;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -9,6 +10,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+
+
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
 
@@ -17,9 +20,9 @@ public class LivingEntityMixin {
     protected void getSource(DamageSource source, float f, CallbackInfoReturnable cir){
         this.source = source;
     }
-
+    //no callbackinfo on modifyvariable
     @ModifyVariable(method = "damage", at = @At("HEAD"))
-    public float boostFireDamage(DamageSource source, float f, CallbackInfoReturnable cir){
+    public float boostFireDamage(float f){
        if(source.isFire() && boostedFireTicks > 0){
             f += 6;
        }
@@ -34,9 +37,10 @@ public class LivingEntityMixin {
     }
 
 
-    int boostedFireTicks = 0;
+    public int boostedFireTicks = 0;
 
     public void setBoostedTicks(int i){
         boostedFireTicks = i;
+        HeroesRelics.LOGGER.info(String.valueOf(boostedFireTicks));
     }
 }
