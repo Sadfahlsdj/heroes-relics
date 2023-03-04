@@ -15,8 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.Packet;
 import org.lwjgl.glfw.GLFW;
 
-import static hrelics.networking.ModMessages.ATROCITY;
-import static hrelics.networking.ModMessages.FOUDROYANT;
+import static hrelics.networking.ModMessages.*;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_HEROESRELICS = "key.category.hrelics.heroesrelics";
@@ -33,6 +32,9 @@ public class KeyInputHandler {
                }
                else if(p.getMainHandStack().isOf(ModItems.Thunderbrand)){
                    ClientPlayNetworking.send(FOUDROYANT, PacketByteBufs.create());
+               }
+               else if(p.getMainHandStack().isOf(ModItems.Luin)){
+                   ClientPlayNetworking.send(BURNINGQUAKE, PacketByteBufs.create());
                }
             }
         });

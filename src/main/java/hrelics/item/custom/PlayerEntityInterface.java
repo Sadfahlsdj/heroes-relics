@@ -28,4 +28,8 @@ public interface PlayerEntityInterface {
     public default void decrementLightningHits(){
 
     }
+    //burning quake
+    public default void setBoostedTicks(int i){
+
+    }
 }
