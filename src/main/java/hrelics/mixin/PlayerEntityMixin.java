@@ -1,6 +1,7 @@
 package hrelics.mixin;
 
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import hrelics.HeroesRelics;
 import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
@@ -84,15 +85,21 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     EntityAttributeModifier CreatorSwordPermanentAttackRange = new EntityAttributeModifier("cswordreach",
             2, EntityAttributeModifier.Operation.ADDITION);
 
+
+
     @Inject(method = "tick", at = @At("HEAD"))
     protected void applyCSwordRange(CallbackInfo ci){
-        if(user.getMainHandStack().isOf(ModItems.CreatorSword)){
+        if(user.getMainHandStack().isOf(ModItems.CreatorSword) &&
+                !user.getAttributeInstance(ReachEntityAttributes.REACH).hasModifier(CreatorSwordPermanentReach)){
             //adds reach+attack range if holding csword
-            user.getAttributeInstance(ReachEntityAttributes.REACH).addPersistentModifier(CreatorSwordPermanentReach);
-            user.getAttributeInstance(ReachEntityAttributes.REACH).addPersistentModifier(CreatorSwordPermanentAttackRange);
+            user.getAttributeInstance(ReachEntityAttributes.REACH).addTemporaryModifier(CreatorSwordPermanentReach);
+            user.getAttributeInstance(ReachEntityAttributes.REACH).addTemporaryModifier(CreatorSwordPermanentAttackRange);
+            HeroesRelics.LOGGER.info("applied reach attributes");
         }
-        //removes both modifiers whether or not sword is held
-        user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentReach);
-        user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentAttackRange);
+        //removes both modifiers if sword is not held
+        else if(!user.getMainHandStack().isOf(ModItems.CreatorSword)) {
+            user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentReach);
+            user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentAttackRange);
+        }
     }
 }
