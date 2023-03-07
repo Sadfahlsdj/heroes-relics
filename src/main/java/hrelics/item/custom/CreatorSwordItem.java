@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 
+import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_ATTACK_DAMAGE;
+
 public class CreatorSwordItem extends SwordItem {
     public CreatorSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
@@ -25,7 +27,7 @@ public class CreatorSwordItem extends SwordItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         attacker.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(RupturedHeavenReach);
         attacker.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).removeModifier(RupturedHeavenAttackRange);
-        attacker.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).removeModifier(RupturedHeavenDamage);
+        attacker.getAttributeInstance(GENERIC_ATTACK_DAMAGE).removeModifier(RupturedHeavenDamage);
         return super.postHit(stack, target, attacker);
     }
 }
