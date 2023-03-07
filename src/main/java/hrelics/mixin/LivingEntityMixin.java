@@ -1,6 +1,7 @@
 package hrelics.mixin;
 
 import hrelics.HeroesRelics;
+import hrelics.item.ModItems;
 import hrelics.item.custom.LivingEntityInterface;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -25,20 +26,24 @@ public class LivingEntityMixin implements LivingEntityInterface {
     @ModifyVariable(method = "damage", at = @At("HEAD"))
     public float boostFireDamage(float f){
        if(source.isFire() && boostedFireTicks > 0){
-
+            //burning quake logic
             f += 6;
 
        }
        //testing
-       HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
+       //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
        return f;
     }
+
+
 
     @Inject(method = "tick", at = @At("HEAD"))
     protected void decrementFireTicks(CallbackInfo ci){
         if(boostedFireTicks > 0){
+            //makes boostedfireticks decrement as a tick would
             boostedFireTicks--;
         }
+
     }
 
 

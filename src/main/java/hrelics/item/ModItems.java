@@ -2,6 +2,7 @@ package hrelics.item;
 
 import hrelics.HeroesRelics;
 import hrelics.item.custom.AreadbharItem;
+import hrelics.item.custom.CreatorSwordItem;
 import hrelics.item.custom.LuinItem;
 import hrelics.item.custom.ThunderbrandItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -18,7 +19,10 @@ public class ModItems {
     public static final Item Thunderbrand = registerItem("thunderbrand", new ThunderbrandItem(ModToolMaterials.UMBRAL_STEEL,
             2, 1.6f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
     public static final Item Luin = registerItem("luin", new LuinItem(ModToolMaterials.UMBRAL_STEEL,
-            4, 1.3f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+            4, 1.2f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+
+    public static final Item CreatorSword = registerItem("creatorsword", new CreatorSwordItem(ModToolMaterials.UMBRAL_STEEL,
+            5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
 
     //important

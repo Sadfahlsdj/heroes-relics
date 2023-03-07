@@ -1,8 +1,10 @@
 package hrelics.mixin;
 
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -58,6 +60,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     }
 
     Entity t;
+    PlayerEntity user = (PlayerEntity) (Object) this;
 
     @Inject(method = "attack", at = @At("HEAD"))
     protected void getTarget(Entity target, CallbackInfo cir){
@@ -67,12 +70,29 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     @ModifyArg(method = "attack", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     private float modifyDamage(float f){
-        PlayerEntity user = (PlayerEntity) (Object) this;
+
         if(user.getMainHandStack().isOf(ModItems.Areadbhar) && ((PlayerEntityInterface) user).getAtrocityHits() > 0){
             f += 15;
             ((PlayerEntityInterface) user).decrementAtrocityHits();
         }
 
         return f;
+    }
+
+    EntityAttributeModifier CreatorSwordPermanentReach = new EntityAttributeModifier("cswordreach",
+            2, EntityAttributeModifier.Operation.ADDITION);
+    EntityAttributeModifier CreatorSwordPermanentAttackRange = new EntityAttributeModifier("cswordreach",
+            2, EntityAttributeModifier.Operation.ADDITION);
+
+    @Inject(method = "tick", at = @At("HEAD"))
+    protected void applyCSwordRange(CallbackInfo ci){
+        if(user.getMainHandStack().isOf(ModItems.CreatorSword)){
+            //adds reach+attack range if holding csword
+            user.getAttributeInstance(ReachEntityAttributes.REACH).addPersistentModifier(CreatorSwordPermanentReach);
+            user.getAttributeInstance(ReachEntityAttributes.REACH).addPersistentModifier(CreatorSwordPermanentAttackRange);
+        }
+        //removes both modifiers whether or not sword is held
+        user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentReach);
+        user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentAttackRange);
     }
 }
