@@ -36,6 +36,9 @@ public class KeyInputHandler {
                else if(p.getMainHandStack().isOf(ModItems.Luin)){
                    ClientPlayNetworking.send(BURNINGQUAKE, PacketByteBufs.create());
                }
+               else if(p.getMainHandStack().isOf(ModItems.CreatorSword)){
+                   ClientPlayNetworking.send(RUPTUREDHEAVEN, PacketByteBufs.create());
+               }
             }
         });
     }

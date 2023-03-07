@@ -81,9 +81,12 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     }
 
     EntityAttributeModifier CreatorSwordPermanentReach = new EntityAttributeModifier("cswordreach",
-            2, EntityAttributeModifier.Operation.ADDITION);
-    EntityAttributeModifier CreatorSwordPermanentAttackRange = new EntityAttributeModifier("cswordreach",
-            2, EntityAttributeModifier.Operation.ADDITION);
+            1.25, EntityAttributeModifier.Operation.ADDITION);
+    EntityAttributeModifier CreatorSwordPermanentAttackRange = new EntityAttributeModifier("cswordrange",
+            1.25, EntityAttributeModifier.Operation.ADDITION);
+
+    //double playeratkrange = user.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).getValue();
+    //double playerreach = user.getAttributeInstance(ReachEntityAttributes.REACH).getValue();
 
 
 
@@ -93,13 +96,16 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
                 !user.getAttributeInstance(ReachEntityAttributes.REACH).hasModifier(CreatorSwordPermanentReach)){
             //adds reach+attack range if holding csword
             user.getAttributeInstance(ReachEntityAttributes.REACH).addTemporaryModifier(CreatorSwordPermanentReach);
-            user.getAttributeInstance(ReachEntityAttributes.REACH).addTemporaryModifier(CreatorSwordPermanentAttackRange);
+            user.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).addTemporaryModifier(CreatorSwordPermanentAttackRange);
+            //testing
             HeroesRelics.LOGGER.info("applied reach attributes");
+            //HeroesRelics.LOGGER.info("{}", playerreach);
+            //HeroesRelics.LOGGER.info("{}", playeratkrange);
         }
         //removes both modifiers if sword is not held
         else if(!user.getMainHandStack().isOf(ModItems.CreatorSword)) {
             user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentReach);
-            user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentAttackRange);
+            user.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).removeModifier(CreatorSwordPermanentAttackRange);
         }
     }
 }
