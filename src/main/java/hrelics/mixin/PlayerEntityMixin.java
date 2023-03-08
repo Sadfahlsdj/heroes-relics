@@ -60,6 +60,19 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         fireHits--;
     }
 
+    //fallen star
+    int fallenStarHits = 0;
+    public void setFallenStarHits(int a){
+        fallenStarHits = a;
+    }
+    public int getFallenStarHits(){
+        return fallenStarHits;
+    }
+
+    public void decrementFallenStarHits(){
+        fallenStarHits--;
+    }
+
     Entity t;
     PlayerEntity user = (PlayerEntity) (Object) this;
 

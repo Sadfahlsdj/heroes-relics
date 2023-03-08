@@ -41,5 +41,17 @@ public interface PlayerEntityInterface {
 
     }
 
+    //fallen star
+    int fallenStarHits = 0;
+    public default void setFallenStarHits(int a){
+
+    }
+    public default int getFallenStarHits(){
+        return fallenStarHits;
+    }
+
+    public default void decrementFallenStarHits(){
+
+    }
 
 }

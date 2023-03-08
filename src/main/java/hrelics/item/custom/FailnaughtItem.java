@@ -50,7 +50,12 @@ public class FailnaughtItem extends BowItem{
             int j;
             ArrowItem arrowItem = (ArrowItem)(itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.ARROW);
             PersistentProjectileEntity persistentProjectileEntity = arrowItem.createArrow(world, itemStack, playerEntity);
+            //removes gravity
             persistentProjectileEntity.setNoGravity(true);
+
+            //base damage increase
+            persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 2);
+
             persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, f * 3.0f, 1.0f);
             if (f == 1.0f) {
                 persistentProjectileEntity.setCritical(true);

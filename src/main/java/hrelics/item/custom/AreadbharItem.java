@@ -15,10 +15,13 @@ public class AreadbharItem extends SwordItem {
 
     //postHit example code; will prob come in handy for thunderbrand
     /*
+
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 0), attacker);
         return super.postHit(stack, target, attacker);
     }
-    */
+
+     */
+
 }

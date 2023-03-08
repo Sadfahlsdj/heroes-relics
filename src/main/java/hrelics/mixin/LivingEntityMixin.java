@@ -22,6 +22,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
     protected void getSource(DamageSource source, float f, CallbackInfoReturnable cir){
         this.source = source;
     }
+
     //no callbackinfo on modifyvariable
     @ModifyVariable(method = "damage", at = @At("HEAD"))
     public float boostFireDamage(float f){
