@@ -12,18 +12,21 @@ import net.minecraft.util.registry.Registry;
 public class ModItems {
 
     public static final Item Areadbhar = registerItem("areadbhar", new AreadbharItem(ModToolMaterials.UMBRAL_STEEL,
-            7, 1.3f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+            10, 1.3f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
     public static final Item Thunderbrand = registerItem("thunderbrand", new ThunderbrandItem(ModToolMaterials.UMBRAL_STEEL,
-            2, 1.6f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+            3, 1.6f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
     public static final Item Luin = registerItem("luin", new LuinItem(ModToolMaterials.UMBRAL_STEEL,
-            4, 1.2f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+            5, 1.2f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
     public static final Item CreatorSword = registerItem("creatorsword", new CreatorSwordItem(ModToolMaterials.UMBRAL_STEEL,
-            5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+            6, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
     public static final Item Failnaught = registerItem("failnaught", new FailnaughtItem
             (new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+
+    public static final Item LanceOfRuin = registerItem("lanceofruin", new LanceOfRuinItem(ModToolMaterials.UMBRAL_STEEL,
+            5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
 
     //important

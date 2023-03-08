@@ -54,4 +54,17 @@ public interface PlayerEntityInterface {
 
     }
 
+    //ruined sky
+    int ruinedSkyHits = 0;
+    public default void setRuinedSkyHits(int a){
+
+    }
+    public default int getRuinedSkyHits(){
+        return ruinedSkyHits;
+    }
+
+    public default void decrementRuinedSkyHits(){
+
+    }
+
 }

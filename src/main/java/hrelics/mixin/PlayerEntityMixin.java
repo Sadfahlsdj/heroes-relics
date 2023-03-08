@@ -6,6 +6,10 @@ import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.boss.dragon.EnderDragonPart;
+import net.minecraft.entity.mob.BlazeEntity;
+import net.minecraft.entity.mob.PhantomEntity;
+import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -73,6 +77,19 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         fallenStarHits--;
     }
 
+    //ruined sky
+    int ruinedSkyHits = 0;
+    public void setRuinedSkyHits(int a){
+        ruinedSkyHits = a;
+    }
+    public int getRuinedSkyHits(){
+        return ruinedSkyHits;
+    }
+
+    public void decrementRuinedSkyHits(){
+        ruinedSkyHits--;
+    }
+
     Entity t;
     PlayerEntity user = (PlayerEntity) (Object) this;
 
@@ -84,12 +101,29 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     @ModifyArg(method = "attack", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     private float modifyDamage(float f){
-
+        //atrocity
         if(user.getMainHandStack().isOf(ModItems.Areadbhar) && ((PlayerEntityInterface) user).getAtrocityHits() > 0){
             f += 15;
             ((PlayerEntityInterface) user).decrementAtrocityHits();
+            if(t instanceof EnderDragonPart){
+                f =- 10;
+            }
         }
-
+        else if(user.getMainHandStack().isOf(ModItems.LanceOfRuin) && ((PlayerEntityInterface) user).getRuinedSkyHits() > 0){
+            if(t instanceof BlazeEntity || t instanceof VexEntity || t instanceof PhantomEntity){
+                f += 10;
+                ((PlayerEntityInterface) user).decrementRuinedSkyHits();
+            }
+            else if(t instanceof EnderDragonPart){
+                f += 25;
+                ((PlayerEntityInterface) user).decrementRuinedSkyHits();
+            }
+            else{
+                f += 5;
+                ((PlayerEntityInterface) user).decrementRuinedSkyHits();
+            }
+        }
+        HeroesRelics.LOGGER.info("{}", f);
         return f;
     }
 

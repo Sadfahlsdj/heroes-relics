@@ -9,7 +9,7 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    UMBRAL_STEEL(4, 0, 9.0F, 7.0F, 30, () -> {
+    UMBRAL_STEEL(4, 0, 9.0F, 5.0F, 30, () -> {
         return Ingredient.ofItems(new ItemConvertible[]{Items.NETHERITE_INGOT});
     });
 

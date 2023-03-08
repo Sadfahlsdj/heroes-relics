@@ -26,11 +26,6 @@ public class PersistentProjectileEntityMixin {
     public void getTarget(EntityHitResult entityHitResult, CallbackInfo ci){
         this.target = (LivingEntity) entityHitResult.getEntity();
     }
-
-
-
-
-
     @ModifyVariable(method = "onEntityHit", at = @At("HEAD"))
     public EntityHitResult applyWeakness(EntityHitResult ehr){
         user = ((PersistentProjectileEntity) (Object) this).getOwner();

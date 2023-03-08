@@ -15,12 +15,15 @@ public class ModMessages {
 
     public static final Identifier FALLENSTAR = new Identifier(HeroesRelics.MOD_ID, "fallenstar");
 
+    public static final Identifier RUINEDSKY = new Identifier(HeroesRelics.MOD_ID, "ruinedsky");
+
     public static void registerC2SPackets(){
         ServerPlayNetworking.registerGlobalReceiver(ATROCITY, AtrocityC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(FOUDROYANT, FoudroyantC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(BURNINGQUAKE, BurningQuakeC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(RUPTUREDHEAVEN, RupturedHeavenC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(FALLENSTAR, FallenStarC2SPacket::receive);
+        ServerPlayNetworking.registerGlobalReceiver(RUINEDSKY, RuinedSkyC2SPacket::receive);
     }
 
     public static void registerS2CPackets(){
