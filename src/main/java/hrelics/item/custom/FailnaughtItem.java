@@ -61,9 +61,9 @@ public class FailnaughtItem extends BowItem{
             //fallenstar damage increase
             if(((PlayerEntityInterface) playerEntity).getFallenStarHits() > 0){
                 persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 1.5);
-                HeroesRelics.LOGGER.info("{}", persistentProjectileEntity.getDamage());
+                //HeroesRelics.LOGGER.info("{}", persistentProjectileEntity.getDamage());
             }
-            HeroesRelics.LOGGER.info("{}", persistentProjectileEntity.getDamage());
+            //HeroesRelics.LOGGER.info("{}", persistentProjectileEntity.getDamage());
 
             persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, f * 3.0f, 1.0f);
             if (f == 1.0f) {
