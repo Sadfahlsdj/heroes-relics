@@ -1,5 +1,6 @@
 package hrelics.item.custom;
 
+import hrelics.HeroesRelics;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -55,6 +56,14 @@ public class FailnaughtItem extends BowItem{
 
             //base damage increase
             persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 2);
+
+
+            //fallenstar damage increase
+            if(((PlayerEntityInterface) playerEntity).getFallenStarHits() > 0){
+                persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 1.5);
+                HeroesRelics.LOGGER.info("{}", persistentProjectileEntity.getDamage());
+            }
+            HeroesRelics.LOGGER.info("{}", persistentProjectileEntity.getDamage());
 
             persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0f, f * 3.0f, 1.0f);
             if (f == 1.0f) {

@@ -20,9 +20,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class PersistentProjectileEntityMixin {
     LivingEntity target;
     Entity user;
+
+    double d;
     @Inject(method = "onEntityHit", at = @At("HEAD"))
     public void getTarget(EntityHitResult entityHitResult, CallbackInfo ci){
         this.target = (LivingEntity) entityHitResult.getEntity();
+    }
+
+    @Inject(method = "setDamage", at = @At("HEAD"))
+    public void getdamage(double damage, CallbackInfo ci){
+        this.d = damage;
     }
 
 
@@ -32,8 +39,10 @@ public class PersistentProjectileEntityMixin {
         user = ((PersistentProjectileEntity) (Object) this).getOwner();
         if(user instanceof PlayerEntity && ((PlayerEntityInterface) user).getFallenStarHits() > 0){
             target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 60, 127), user);
+
             ((PlayerEntityInterface) user).decrementFallenStarHits();
         }
-        return null;
+        return ehr;
     }
+
 }

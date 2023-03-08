@@ -1,10 +1,7 @@
 package hrelics.networking;
 
 import hrelics.HeroesRelics;
-import hrelics.networking.packet.AtrocityC2SPacket;
-import hrelics.networking.packet.BurningQuakeC2SPacket;
-import hrelics.networking.packet.FoudroyantC2SPacket;
-import hrelics.networking.packet.RupturedHeavenC2SPacket;
+import hrelics.networking.packet.*;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 
@@ -16,11 +13,14 @@ public class ModMessages {
 
     public static final Identifier RUPTUREDHEAVEN = new Identifier(HeroesRelics.MOD_ID, "rupturedheaven");
 
+    public static final Identifier FALLENSTAR = new Identifier(HeroesRelics.MOD_ID, "fallenstar");
+
     public static void registerC2SPackets(){
         ServerPlayNetworking.registerGlobalReceiver(ATROCITY, AtrocityC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(FOUDROYANT, FoudroyantC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(BURNINGQUAKE, BurningQuakeC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(RUPTUREDHEAVEN, RupturedHeavenC2SPacket::receive);
+        ServerPlayNetworking.registerGlobalReceiver(FALLENSTAR, FallenStarC2SPacket::receive);
     }
 
     public static void registerS2CPackets(){
