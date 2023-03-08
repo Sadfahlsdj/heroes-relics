@@ -21,16 +21,13 @@ public class PersistentProjectileEntityMixin {
     LivingEntity target;
     Entity user;
 
-    double d;
+
     @Inject(method = "onEntityHit", at = @At("HEAD"))
     public void getTarget(EntityHitResult entityHitResult, CallbackInfo ci){
         this.target = (LivingEntity) entityHitResult.getEntity();
     }
 
-    @Inject(method = "setDamage", at = @At("HEAD"))
-    public void getdamage(double damage, CallbackInfo ci){
-        this.d = damage;
-    }
+
 
 
 
