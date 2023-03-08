@@ -1,0 +1,6 @@
+{
+  "parent": "hrelics:item/failnaught",
+  "textures": {
+    "layer0": "hrelics:item/failnaught_pulling_1"
+  }
+}

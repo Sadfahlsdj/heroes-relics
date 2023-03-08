@@ -1,11 +1,9 @@
 package hrelics.item;
 
 import hrelics.HeroesRelics;
-import hrelics.item.custom.AreadbharItem;
-import hrelics.item.custom.CreatorSwordItem;
-import hrelics.item.custom.LuinItem;
-import hrelics.item.custom.ThunderbrandItem;
+import hrelics.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Identifier;
@@ -23,6 +21,9 @@ public class ModItems {
 
     public static final Item CreatorSword = registerItem("creatorsword", new CreatorSwordItem(ModToolMaterials.UMBRAL_STEEL,
             5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+
+    public static final Item Failnaught = registerItem("failnaught", new FailnaughtItem
+            (new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
 
     //important
