@@ -14,7 +14,12 @@ public class BlutgangItem extends SwordItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
-        target.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 40, 0), attacker);
+        if(((PlayerEntityInterface) attacker).getWitherHits() > 0){
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 4), attacker);
+            ((LivingEntityInterface) target).setBoostedWitherTicks(100);
+            ((PlayerEntityInterface) attacker).decrementWitherHits();
+        }
+
         return super.postHit(stack, target, attacker);
     }
 }

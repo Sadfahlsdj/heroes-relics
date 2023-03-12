@@ -14,7 +14,7 @@ public class BeastFangC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender){
 
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 0), player);
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 1), player);
 
         ((PlayerEntityInterface) player).setWitherHits(1);
 

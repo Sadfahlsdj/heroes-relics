@@ -1,7 +1,5 @@
 package hrelics.mixin;
 
-import hrelics.HeroesRelics;
-import hrelics.item.ModItems;
 import hrelics.item.custom.LivingEntityInterface;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class LivingEntityMixin implements LivingEntityInterface {
 
     DamageSource source;
+    LivingEntity target = (LivingEntity) (Object) this;
     @Inject(method = "damage", at = @At("HEAD"))
     protected void getSource(DamageSource source, float f, CallbackInfoReturnable cir){
         this.source = source;
@@ -25,11 +24,15 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
     //no callbackinfo on modifyvariable
     @ModifyVariable(method = "damage", at = @At("HEAD"))
-    public float boostFireDamage(float f){
+    public float boostTickDamage(float f){
        if(source.isFire() && boostedFireTicks > 0){
             //burning quake logic
             f += 6;
 
+       }
+       if(source == DamageSource.WITHER && boostedWitherTicks > 0){
+           target.hurtTime = 0;
+           target.timeUntilRegen = 1;
        }
        //testing
        //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
