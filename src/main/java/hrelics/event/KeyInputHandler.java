@@ -45,6 +45,9 @@ public class KeyInputHandler {
                else if(p.getMainHandStack().isOf(ModItems.LanceOfRuin)){
                    ClientPlayNetworking.send(RUINEDSKY, PacketByteBufs.create());
                }
+               else if(p.getMainHandStack().isOf(ModItems.Blutgang)){
+                   ClientPlayNetworking.send(BEASTFANG, PacketByteBufs.create());
+               }
             }
         });
     }

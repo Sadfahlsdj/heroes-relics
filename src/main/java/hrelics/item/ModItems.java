@@ -27,6 +27,8 @@ public class ModItems {
 
     public static final Item LanceOfRuin = registerItem("lanceofruin", new LanceOfRuinItem(ModToolMaterials.UMBRAL_STEEL,
             5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+    public static final Item Blutgang = registerItem("lanceofruin", new BlutgangItem(ModToolMaterials.UMBRAL_STEEL,
+            5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
 
     //important

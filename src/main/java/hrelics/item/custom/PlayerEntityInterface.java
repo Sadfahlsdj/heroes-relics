@@ -66,5 +66,19 @@ public interface PlayerEntityInterface {
     public default void decrementRuinedSkyHits(){
 
     }
+    //beast fang
+
+    int witherHits = 0;
+    public default void setWitherHits(int a) {
+
+    }
+
+    public default int getWitherHits(){
+        return witherHits;
+    }
+
+    public default void decrementWitherHits(){
+
+    }
 
 }

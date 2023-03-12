@@ -17,6 +17,8 @@ public class ModMessages {
 
     public static final Identifier RUINEDSKY = new Identifier(HeroesRelics.MOD_ID, "ruinedsky");
 
+    public static final Identifier BEASTFANG = new Identifier(HeroesRelics.MOD_ID, "beastfang");
+
     public static void registerC2SPackets(){
         ServerPlayNetworking.registerGlobalReceiver(ATROCITY, AtrocityC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(FOUDROYANT, FoudroyantC2SPacket::receive);
@@ -24,6 +26,7 @@ public class ModMessages {
         ServerPlayNetworking.registerGlobalReceiver(RUPTUREDHEAVEN, RupturedHeavenC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(FALLENSTAR, FallenStarC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(RUINEDSKY, RuinedSkyC2SPacket::receive);
+        ServerPlayNetworking.registerGlobalReceiver(BEASTFANG, BeastFangC2SPacket::receive);
     }
 
     public static void registerS2CPackets(){

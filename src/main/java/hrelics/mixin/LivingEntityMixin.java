@@ -44,16 +44,23 @@ public class LivingEntityMixin implements LivingEntityInterface {
             //makes boostedfireticks decrement as a tick would
             boostedFireTicks--;
         }
+        if(boostedWitherTicks > 0){
+            boostedWitherTicks--;
+        }
 
     }
 
 
     public int boostedFireTicks = 0;
+    public int boostedWitherTicks = 0;
 
-    public void setBoostedTicks(int i){
+    public void setBoostedFireTicks(int i){
         boostedFireTicks = i;
 
         //testing
         //HeroesRelics.LOGGER.info(String.valueOf(boostedFireTicks));
+    }
+    public void setBoostedWitherTicks(int i){
+        boostedWitherTicks = i;
     }
 }

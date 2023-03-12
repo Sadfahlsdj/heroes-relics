@@ -52,6 +52,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     }
 
     //burning quake
+    @Unique
     int fireHits = 0;
     public void setFireHits(int a){
         fireHits = a;
@@ -65,6 +66,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     }
 
     //fallen star
+    @Unique
     int fallenStarHits = 0;
     public void setFallenStarHits(int a){
         fallenStarHits = a;
@@ -78,6 +80,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     }
 
     //ruined sky
+    @Unique
     int ruinedSkyHits = 0;
     public void setRuinedSkyHits(int a){
         ruinedSkyHits = a;
@@ -89,6 +92,22 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     public void decrementRuinedSkyHits(){
         ruinedSkyHits--;
     }
+
+    //beast fang
+    @Unique
+    int witherHits = 0;
+    public void setWitherHits(int a) {
+        witherHits = a;
+    }
+
+    public int getWitherHits(){
+        return witherHits;
+    }
+
+    public void decrementWitherHits(){
+        witherHits--;
+    }
+
 
     Entity t;
     PlayerEntity user = (PlayerEntity) (Object) this;

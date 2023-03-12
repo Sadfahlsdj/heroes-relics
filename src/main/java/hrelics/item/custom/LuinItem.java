@@ -1,8 +1,6 @@
 package hrelics.item.custom;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -19,7 +17,7 @@ public class LuinItem extends SwordItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         if(((PlayerEntityInterface) attacker).getFireHits() > 0){
             target.setFireTicks(100);
-            ((LivingEntityInterface) target).setBoostedTicks(100);
+            ((LivingEntityInterface) target).setBoostedFireTicks(100);
             ((PlayerEntityInterface) attacker).decrementFireHits();
         }
 
