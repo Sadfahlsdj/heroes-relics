@@ -142,6 +142,9 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
                 ((PlayerEntityInterface) user).decrementRuinedSkyHits();
             }
         }
+        else if(user.getMainHandStack().isOf(ModItems.Blutgang) && ((PlayerEntityInterface) user).getWitherHits() > 0){
+            f += 20;
+        }
         HeroesRelics.LOGGER.info("{}", f);
         return f;
     }
