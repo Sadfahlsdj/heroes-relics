@@ -1,5 +1,6 @@
 package hrelics;
 
+import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
 import net.fabricmc.api.ModInitializer;
@@ -17,7 +18,9 @@ public class HeroesRelics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItemGroup.registerModItemGroup();
 		ModItems.registerModItems();
+		//registerModItemGroup has to go on top of registerModItems
 
 		//LOGGER.info("Hello Fabric world!");
 		ModMessages.registerC2SPackets();

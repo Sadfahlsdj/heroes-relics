@@ -61,16 +61,16 @@ public class LivingEntityMixin implements LivingEntityInterface {
             boostedWitherTicks--;
         }
         //if mainhand is relic weapon & offhand is aegis shield & shieldselfdamageticks < 20, start ticking up
-        if(user instanceof PlayerEntity && user.getMainHandStack().getItem().getGroup() == ModItemGroup.RELICWEAPON
+        if(user instanceof PlayerEntity && ModItemGroup.RELICWEAPON.contains(user.getMainHandStack())
                 && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks < 20){
             shieldSelfDamageTicks++;
         }
-        if(user instanceof PlayerEntity && user.getMainHandStack().getItem().getGroup() == ModItemGroup.RELICWEAPON
+        if(user instanceof PlayerEntity && ModItemGroup.RELICWEAPON.contains(user.getMainHandStack())
                 && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks == 20){
-            user.damage(DamageSource.OUT_OF_WORLD, 2);
+            user.damage(DamageSource.OUT_OF_WORLD, 4);
             shieldSelfDamageTicks = 0;
         }
-        if(user instanceof PlayerEntity && !(user.getMainHandStack().getItem().getGroup() == ModItemGroup.RELICWEAPON)
+        if(user instanceof PlayerEntity && !(ModItemGroup.RELICWEAPON.contains(user.getMainHandStack()))
                 || !(user.getOffHandStack().isOf(ModItems.AegisShield))){
             shieldSelfDamageTicks = 0;
         }

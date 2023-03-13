@@ -12,13 +12,16 @@ public class HrelicsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+
+
+
+
         ModMessages.registerS2CPackets();
 
         KeyInputHandler.register();
         ModModelPredicateProvider.registerModModels();
 
         //registerModItemGroup needs to be registered first
-        ModItemGroup.registerModItemGroup();
-        ModItems.registerModItems();
+
     }
 }

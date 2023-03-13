@@ -61,11 +61,12 @@ public class ModItems {
 
     public static void addToItemGroup(ItemGroup group, Item item){
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+
     }
 
     public static void registerModItems(){
 
-        HeroesRelics.LOGGER.info("Registering items for" + HeroesRelics.MOD_ID);
+        HeroesRelics.LOGGER.info("Registering items for " + HeroesRelics.MOD_ID);
         addItemsToItemGroup();
     }
 }
