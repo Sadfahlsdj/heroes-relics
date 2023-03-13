@@ -6,6 +6,7 @@ import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.PhantomEntity;
@@ -124,7 +125,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         if(user.getMainHandStack().isOf(ModItems.Areadbhar) && ((PlayerEntityInterface) user).getAtrocityHits() > 0){
             f += 15;
             ((PlayerEntityInterface) user).decrementAtrocityHits();
-            if(t instanceof EnderDragonPart){
+            if(t instanceof EnderDragonPart || t instanceof WitherEntity){
                 f =- 10;
             }
         }

@@ -6,7 +6,6 @@ import hrelics.item.custom.LivingEntityInterface;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,15 +28,21 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
     //no callbackinfo on modifyvariable
     @ModifyVariable(method = "damage", at = @At("HEAD"))
-    public float boostTickDamage(float f){
+    public float damageModifications(float f){
        if(source.isFire() && boostedFireTicks > 0){
             //burning quake logic
             f += 6;
 
        }
        if(source == DamageSource.WITHER && boostedWitherTicks > 0){
+           //beast fang logic; disables target iframes so that wither values > 3 actually have an effect
            target.hurtTime = 0;
            target.timeUntilRegen = 1;
+       }
+
+       if(target instanceof LivingEntity && target.getOffHandStack().isOf(ModItems.AegisShield)){
+           //aegis shield passive DR
+           f -= 2;
        }
        //testing
        //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
