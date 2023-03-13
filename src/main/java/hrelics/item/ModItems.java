@@ -30,6 +30,9 @@ public class ModItems {
     public static final Item Blutgang = registerItem("blutgang", new BlutgangItem(ModToolMaterials.UMBRAL_STEEL,
             5, 1.0f, new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
 
+    public static final Item AegisShield = registerItem("aegisshield",
+            new AegisShieldItem(new FabricItemSettings().maxDamage(0).group(ModItemGroup.RELICWEAPON)));
+
 
     //important
 
