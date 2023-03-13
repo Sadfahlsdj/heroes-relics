@@ -1,6 +1,8 @@
 package hrelics;
 
 import hrelics.event.KeyInputHandler;
+import hrelics.item.ModItemGroup;
+import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
 import hrelics.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -14,5 +16,9 @@ public class HrelicsClient implements ClientModInitializer {
 
         KeyInputHandler.register();
         ModModelPredicateProvider.registerModModels();
+
+        //registerModItemGroup needs to be registered first
+        ModItemGroup.registerModItemGroup();
+        ModItems.registerModItems();
     }
 }
