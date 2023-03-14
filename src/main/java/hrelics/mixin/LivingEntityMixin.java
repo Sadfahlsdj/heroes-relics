@@ -44,13 +44,21 @@ public class LivingEntityMixin implements LivingEntityInterface {
            target.timeUntilRegen = 1;
        }
 
-       if(target instanceof LivingEntity && target.getOffHandStack().isOf(ModItems.AegisShield)){
+       if(target instanceof PlayerEntity && target.getOffHandStack().isOf(ModItems.AegisShield)){
            //aegis shield passive DR
            f -= 2;
        }
        //testing
        //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
        return f;
+    }
+
+    @Inject(method = "disablesShield", at = @At("HEAD"), cancellable = true)
+    protected void holdingAegisShield(CallbackInfoReturnable<Boolean> cir){
+        if(user instanceof PlayerEntity && user.getOffHandStack().getItem().equals(ModItems.AegisShield)){
+            cir.setReturnValue(false);
+            //setReturnValue instantly forces the method to return, and sets the return value
+        }
     }
 
 
@@ -66,7 +74,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
         }
         Item mainHandItem = user.getMainHandStack().getItem();
         if(mainHandItem instanceof ToolItem) {
-            //if mainhand is relic weapon & offhand is aegis shield & shieldselfdamageticks < 20, start ticking up
+            //if mainhand is of tool material UMBRAL_STEEL & offhand is aegis shield & shieldselfdamageticks < 20, start ticking up
             if (user instanceof PlayerEntity && ((ToolItem) mainHandItem).getMaterial().equals
                     (ModToolMaterials.UMBRAL_STEEL)
                     && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks < 20) {
