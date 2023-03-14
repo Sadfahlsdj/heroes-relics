@@ -5,8 +5,11 @@ import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.item.ModToolMaterials;
 import hrelics.item.custom.LivingEntityInterface;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolItem;
@@ -54,10 +57,28 @@ public class LivingEntityMixin implements LivingEntityInterface {
     }
 
     @Inject(method = "disablesShield", at = @At("HEAD"), cancellable = true)
+    //this makes the aegis shield not able to be disabled
     protected void holdingAegisShield(CallbackInfoReturnable<Boolean> cir){
         if(user instanceof PlayerEntity && user.getOffHandStack().getItem().equals(ModItems.AegisShield)){
             cir.setReturnValue(false);
             //setReturnValue instantly forces the method to return, and sets the return value
+        }
+    }
+    StatusEffectInstance instance;
+
+    @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
+            at = @At("HEAD"))
+    protected void getStatusEffectInstance(StatusEffectInstance instance, Entity s, CallbackInfoReturnable<Boolean> cir){
+        this.instance = instance;
+    }
+
+    @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
+    at = @At("HEAD"), cancellable = true)
+    //this makes the aegis shield give blindness immunity when offhanded
+    protected void aegisBlindnessImmunity(StatusEffectInstance sei, Entity s, CallbackInfoReturnable<Boolean> cir){
+        if(user instanceof PlayerEntity && user.getOffHandStack().getItem().equals(ModItems.AegisShield) &&
+                sei.getEffectType().equals(StatusEffects.DARKNESS)){
+            cir.setReturnValue(false);
         }
     }
 
