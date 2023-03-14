@@ -1,5 +1,6 @@
 package hrelics.mixin;
 
+import hrelics.HeroesRelics;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.item.custom.LivingEntityInterface;
@@ -64,16 +65,20 @@ public class LivingEntityMixin implements LivingEntityInterface {
         if(user instanceof PlayerEntity && ModItemGroup.RELICWEAPON.contains(user.getMainHandStack())
                 && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks < 20){
             shieldSelfDamageTicks++;
+            //HeroesRelics.LOGGER.info("Adding a tick to shieldselfdamageticks");
         }
         if(user instanceof PlayerEntity && ModItemGroup.RELICWEAPON.contains(user.getMainHandStack())
                 && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks == 20){
             user.damage(DamageSource.OUT_OF_WORLD, 4);
             shieldSelfDamageTicks = 0;
+            //HeroesRelics.LOGGER.info("shieldselfdamageticks hit 20, resetting it");
         }
         if(user instanceof PlayerEntity && !(ModItemGroup.RELICWEAPON.contains(user.getMainHandStack()))
                 || !(user.getOffHandStack().isOf(ModItems.AegisShield))){
             shieldSelfDamageTicks = 0;
+            //HeroesRelics.LOGGER.info("not holding 2 relic items, resetting shieldselfdamageticks");
         }
+
 
 
     }
