@@ -21,7 +21,7 @@ public class HrelicsClient implements ClientModInitializer {
         KeyInputHandler.register();
         ModModelPredicateProvider.registerModModels();
 
-        //registerModItemGroup needs to be registered first
+
 
     }
 }

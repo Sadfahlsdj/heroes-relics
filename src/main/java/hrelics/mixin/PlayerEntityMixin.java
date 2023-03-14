@@ -2,6 +2,7 @@ package hrelics.mixin;
 
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import hrelics.HeroesRelics;
+import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
@@ -146,7 +147,8 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         else if(user.getMainHandStack().isOf(ModItems.Blutgang) && ((PlayerEntityInterface) user).getWitherHits() > 0){
             f += 20;
         }
-        HeroesRelics.LOGGER.info("{}", f);
+        //HeroesRelics.LOGGER.info("{}", f);
+
         return f;
     }
 
@@ -168,7 +170,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
             user.getAttributeInstance(ReachEntityAttributes.REACH).addTemporaryModifier(CreatorSwordPermanentReach);
             user.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).addTemporaryModifier(CreatorSwordPermanentAttackRange);
             //testing
-            HeroesRelics.LOGGER.info("applied reach attributes");
+            //HeroesRelics.LOGGER.info("applied reach attributes");
             //HeroesRelics.LOGGER.info("{}", playerreach);
             //HeroesRelics.LOGGER.info("{}", playeratkrange);
         }

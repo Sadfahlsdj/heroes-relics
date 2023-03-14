@@ -3,10 +3,13 @@ package hrelics.mixin;
 import hrelics.HeroesRelics;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
+import hrelics.item.ModToolMaterials;
 import hrelics.item.custom.LivingEntityInterface;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ToolItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -61,23 +64,32 @@ public class LivingEntityMixin implements LivingEntityInterface {
         if(boostedWitherTicks > 0){
             boostedWitherTicks--;
         }
-        //if mainhand is relic weapon & offhand is aegis shield & shieldselfdamageticks < 20, start ticking up
-        if(user instanceof PlayerEntity && ModItemGroup.RELICWEAPON.contains(user.getMainHandStack())
-                && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks < 20){
-            shieldSelfDamageTicks++;
-            //HeroesRelics.LOGGER.info("Adding a tick to shieldselfdamageticks");
+        Item mainHandItem = user.getMainHandStack().getItem();
+        if(mainHandItem instanceof ToolItem) {
+            //if mainhand is relic weapon & offhand is aegis shield & shieldselfdamageticks < 20, start ticking up
+            if (user instanceof PlayerEntity && ((ToolItem) mainHandItem).getMaterial().equals
+                    (ModToolMaterials.UMBRAL_STEEL)
+                    && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks < 20) {
+                shieldSelfDamageTicks++;
+                //HeroesRelics.LOGGER.info("Adding a tick to shieldselfdamageticks");
+            }
+            if (user instanceof PlayerEntity && ((ToolItem) mainHandItem).getMaterial().equals
+                    (ModToolMaterials.UMBRAL_STEEL)
+                    && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks == 20) {
+                user.damage(DamageSource.OUT_OF_WORLD, 4);
+                shieldSelfDamageTicks = 0;
+                //HeroesRelics.LOGGER.info("shieldselfdamageticks hit 20, resetting it");
+            }
+            if (user instanceof PlayerEntity && !(((ToolItem) mainHandItem).getMaterial().equals
+                    (ModToolMaterials.UMBRAL_STEEL))
+                    || !(user.getOffHandStack().isOf(ModItems.AegisShield))) {
+                shieldSelfDamageTicks = 0;
+                //HeroesRelics.LOGGER.info("not holding 2 relic items, resetting shieldselfdamageticks");
+            }
         }
-        if(user instanceof PlayerEntity && ModItemGroup.RELICWEAPON.contains(user.getMainHandStack())
-                && user.getOffHandStack().isOf(ModItems.AegisShield) && shieldSelfDamageTicks == 20){
-            user.damage(DamageSource.OUT_OF_WORLD, 4);
-            shieldSelfDamageTicks = 0;
-            //HeroesRelics.LOGGER.info("shieldselfdamageticks hit 20, resetting it");
-        }
-        if(user instanceof PlayerEntity && !(ModItemGroup.RELICWEAPON.contains(user.getMainHandStack()))
-                || !(user.getOffHandStack().isOf(ModItems.AegisShield))){
-            shieldSelfDamageTicks = 0;
-            //HeroesRelics.LOGGER.info("not holding 2 relic items, resetting shieldselfdamageticks");
-        }
+
+
+
 
 
 
