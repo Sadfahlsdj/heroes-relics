@@ -13,6 +13,11 @@ public class BlutgangItem extends SwordItem {
     }
 
     @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
+    @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         if(((PlayerEntityInterface) attacker).getWitherHits() > 0){
             target.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 4), attacker);

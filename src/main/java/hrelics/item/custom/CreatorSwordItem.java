@@ -16,6 +16,11 @@ public class CreatorSwordItem extends SwordItem {
 
     }
 
+    @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
     public static EntityAttributeModifier RupturedHeavenReach = new EntityAttributeModifier("rheavenreach",
             1.25, EntityAttributeModifier.Operation.ADDITION);
     public static EntityAttributeModifier RupturedHeavenAttackRange = new EntityAttributeModifier("rheavenrange",

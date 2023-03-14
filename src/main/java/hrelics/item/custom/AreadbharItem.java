@@ -13,6 +13,11 @@ public class AreadbharItem extends SwordItem {
         super(toolMaterial, attackDamage, attackSpeed, settings);
     }
 
+    @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
     //postHit example code; will prob come in handy for thunderbrand
     /*
 

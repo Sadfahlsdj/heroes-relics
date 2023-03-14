@@ -14,6 +14,11 @@ public class LuinItem extends SwordItem {
     }
 
     @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
+    @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         if(((PlayerEntityInterface) attacker).getFireHits() > 0){
             target.setFireTicks(100);

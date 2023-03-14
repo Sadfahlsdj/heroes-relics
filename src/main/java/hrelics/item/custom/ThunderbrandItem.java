@@ -15,6 +15,11 @@ public class ThunderbrandItem extends SwordItem {
         super(toolMaterial, attackDamage, attackSpeed, settings);
     }
 
+    @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
 
 
     @Override

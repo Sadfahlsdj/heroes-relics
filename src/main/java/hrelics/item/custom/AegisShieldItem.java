@@ -37,6 +37,11 @@ public class AegisShieldItem extends ShieldItem {
     }
 
     @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
+    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         BannerItem.appendBannerTooltip(stack, tooltip);
     }

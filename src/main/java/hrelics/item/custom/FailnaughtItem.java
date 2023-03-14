@@ -26,6 +26,11 @@ public class FailnaughtItem extends BowItem{
     }
 
     @Override
+    public boolean isEnchantable(ItemStack stack){
+        return false;
+    }
+
+    @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         boolean bl2;
         int i;

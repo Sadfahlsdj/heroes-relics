@@ -74,7 +74,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
     @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
     at = @At("HEAD"), cancellable = true)
-    //this makes the aegis shield give blindness immunity when offhanded
+    //this makes the aegis shield give darkness immunity when offhanded
     protected void aegisBlindnessImmunity(StatusEffectInstance sei, Entity s, CallbackInfoReturnable<Boolean> cir){
         if(user instanceof PlayerEntity && user.getOffHandStack().getItem().equals(ModItems.AegisShield) &&
                 sei.getEffectType().equals(StatusEffects.DARKNESS)){
