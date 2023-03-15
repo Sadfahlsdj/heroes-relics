@@ -1,8 +1,6 @@
 package hrelics.mixin;
 
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
-import hrelics.HeroesRelics;
-import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
@@ -160,10 +158,21 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     //double playeratkrange = user.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).getValue();
     //double playerreach = user.getAttributeInstance(ReachEntityAttributes.REACH).getValue();
 
+    int PaviseAegisTicks = 0;
+
+    public int getPaviseAegisTicks(){
+        return PaviseAegisTicks;
+    }
+
+    public void setPaviseAegisTicks(int a){
+        PaviseAegisTicks = a;
+    }
+
 
 
     @Inject(method = "tick", at = @At("HEAD"))
-    protected void applyCSwordRange(CallbackInfo ci){
+    protected void tickModifiers(CallbackInfo ci){
+        //whole next section is for creatorsword permanent attributes
         if(user.getMainHandStack().isOf(ModItems.CreatorSword) &&
                 !user.getAttributeInstance(ReachEntityAttributes.REACH).hasModifier(CreatorSwordPermanentReach)){
             //adds reach+attack range if holding csword
@@ -178,6 +187,9 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         else if(!user.getMainHandStack().isOf(ModItems.CreatorSword)) {
             user.getAttributeInstance(ReachEntityAttributes.REACH).removeModifier(CreatorSwordPermanentReach);
             user.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).removeModifier(CreatorSwordPermanentAttackRange);
+        }
+        if(PaviseAegisTicks > 0){
+            PaviseAegisTicks--;
         }
     }
 }

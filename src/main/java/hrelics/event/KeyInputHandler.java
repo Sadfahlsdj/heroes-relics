@@ -48,6 +48,9 @@ public class KeyInputHandler {
                else if(p.getMainHandStack().isOf(ModItems.Blutgang)){
                    ClientPlayNetworking.send(BEASTFANG, PacketByteBufs.create());
                }
+               else if(p.getOffHandStack().isOf(ModItems.AegisShield)){
+                   ClientPlayNetworking.send(PAVISEAEGIS, PacketByteBufs.create());
+               }
             }
         });
     }

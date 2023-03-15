@@ -81,4 +81,15 @@ public interface PlayerEntityInterface {
 
     }
 
+    //pavise & aegis
+    int PaviseAegisTicks = 0;
+
+    public default int getPaviseAegisTicks(){
+        return PaviseAegisTicks;
+    }
+
+    public default void setPaviseAegisTicks(int a){
+
+    }
+
 }
