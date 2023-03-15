@@ -5,6 +5,6 @@ pancake-shaped brick, so this won't be halfway serviceable for a MINUTE
 
 Credits:
 
-Birb - like everything lole this guy activated ancient Chinese patience hack and managed to somehow answer all of my dumbass questions?????? like seriously thanks
+Birb - more or less everything, massive thanks to this guy's seemingly unending well of patience
 
-Vex & Nyan - sprite work
+Vex, Nyan, and (an ethically sourced child) - sprite work
