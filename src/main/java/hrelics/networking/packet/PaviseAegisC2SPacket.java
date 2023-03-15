@@ -18,7 +18,7 @@ public class PaviseAegisC2SPacket {
             ((PlayerEntityInterface) player).setPaviseAegisTicks(260);
         }
         else{
-            double cooldownSeconds = Math.floor(((PlayerEntityInterface) player).getPaviseAegisTicks() / 20);
+            double cooldownSeconds = (double)(((PlayerEntityInterface) player).getPaviseAegisTicks()) / 20.0;
             player.sendMessage(Text.of("Pavise/Aegis is on cooldown for " + cooldownSeconds + " seconds!"
                     ), true);
         }
