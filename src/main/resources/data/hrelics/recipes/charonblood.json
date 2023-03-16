@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "hrelics:ancientblood"
+    },
+    "X": {
+      "item": "minecraft:zombie_head"
+    },
+    "Y": {
+      "item": "minecraft:diamond_chestplate"
+    },
+    "Z": {
+      "item": "minecraft:lightning_rod"
+    }
+  },
+  "pattern": [
+    " X ",
+    "Y#Y",
+    "Z Z"
+  ],
+  "result": {
+    "count": 1,
+    "item": "hrelics:charonblood"
+  }
+}

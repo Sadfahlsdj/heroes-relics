@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "hrelics:ancientblood"
+    },
+    "Y": {
+      "item": "minecraft:wither_rose"
+    },
+    "Z": {
+      "item": "minecraft:diamond_sword"
+    }
+  },
+  "pattern": [
+    "   ",
+    "Y#Y",
+    "Z Z"
+  ],
+  "result": {
+    "count": 1,
+    "item": "hrelics:beastblood"
+  }
+}

@@ -36,6 +36,9 @@ public class ModItems {
     public static final Item AegisShield = registerItem("aegisshield",
             new AegisShieldItem(new FabricItemSettings().maxDamage(0)));
 
+    public static final Item UmbralSteel = registerItem("umbralsteel",
+            new Item(new FabricItemSettings()));
+
     //unique bloods for weapon crafting
     public static final Item AncientBlood = registerItem("ancientblood", new Item(new FabricItemSettings()));
 
@@ -66,6 +69,8 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, Failnaught);
         addToItemGroup(ModItemGroup.RELICITEMS, Blutgang);
         addToItemGroup(ModItemGroup.RELICITEMS, AegisShield);
+
+        addToItemGroup(ModItemGroup.RELICITEMS, UmbralSteel);
 
         //bloods
         addToItemGroup(ModItemGroup.RELICITEMS, BlaiddydBlood);
