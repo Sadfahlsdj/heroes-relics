@@ -4,10 +4,8 @@ import hrelics.HeroesRelics;
 import hrelics.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SwordItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -38,6 +36,17 @@ public class ModItems {
     public static final Item AegisShield = registerItem("aegisshield",
             new AegisShieldItem(new FabricItemSettings().maxDamage(0)));
 
+    //unique bloods for weapon crafting
+    public static final Item AncientBlood = registerItem("ancientblood", new Item(new FabricItemSettings()));
+
+    public static final Item BlaiddydBlood = registerItem("blaiddydblood", new Item(new FabricItemSettings()));
+    public static final Item BeastBlood = registerItem("beastblood", new Item(new FabricItemSettings()));
+    public static final Item HeavenlyBlood = registerItem("heavenlyblood", new Item(new FabricItemSettings()));
+    public static final Item RieganBlood = registerItem("rieganblood", new Item(new FabricItemSettings()));
+    public static final Item GautierBlood = registerItem("gautierblood", new Item(new FabricItemSettings()));
+    public static final Item GalateaBlood = registerItem("galateablood", new Item(new FabricItemSettings()));
+    public static final Item CharonBlood = registerItem("charonblood", new Item(new FabricItemSettings()));
+
 
     //important
 
@@ -49,14 +58,24 @@ public class ModItems {
 
     public static void addItemsToItemGroup(){
         //each item needs to be manually added here
-        addToItemGroup(ModItemGroup.RELICWEAPON, Areadbhar);
-        addToItemGroup(ModItemGroup.RELICWEAPON, Thunderbrand);
-        addToItemGroup(ModItemGroup.RELICWEAPON, Luin);
-        addToItemGroup(ModItemGroup.RELICWEAPON, CreatorSword);
-        addToItemGroup(ModItemGroup.RELICWEAPON, LanceOfRuin);
-        addToItemGroup(ModItemGroup.RELICWEAPON, Failnaught);
-        addToItemGroup(ModItemGroup.RELICWEAPON, Blutgang);
-        addToItemGroup(ModItemGroup.RELICWEAPON, AegisShield);
+        addToItemGroup(ModItemGroup.RELICITEMS, Areadbhar);
+        addToItemGroup(ModItemGroup.RELICITEMS, Thunderbrand);
+        addToItemGroup(ModItemGroup.RELICITEMS, Luin);
+        addToItemGroup(ModItemGroup.RELICITEMS, CreatorSword);
+        addToItemGroup(ModItemGroup.RELICITEMS, LanceOfRuin);
+        addToItemGroup(ModItemGroup.RELICITEMS, Failnaught);
+        addToItemGroup(ModItemGroup.RELICITEMS, Blutgang);
+        addToItemGroup(ModItemGroup.RELICITEMS, AegisShield);
+
+        //bloods
+        addToItemGroup(ModItemGroup.RELICITEMS, BlaiddydBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, BeastBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, HeavenlyBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, RieganBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, GautierBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, GalateaBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, CharonBlood);
+        addToItemGroup(ModItemGroup.RELICITEMS, AncientBlood);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){

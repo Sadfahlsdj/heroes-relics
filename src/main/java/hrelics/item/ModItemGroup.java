@@ -14,10 +14,10 @@ public class ModItemGroup {
             () -> new ItemStack(ModItems.Areadbhar));
 
      */
-    public static ItemGroup RELICWEAPON;
+    public static ItemGroup RELICITEMS;
 
     public static void registerModItemGroup(){
-        RELICWEAPON = FabricItemGroup.builder(new Identifier(HeroesRelics.MOD_ID, "relicweapon"))
+        RELICITEMS = FabricItemGroup.builder(new Identifier(HeroesRelics.MOD_ID, "relicweapon"))
                 .displayName(Text.literal("Relic Items"))
                 .icon(() -> new ItemStack(ModItems.Areadbhar)).entries((enabledFeatures, entries, operatorEnabled)
      -> {

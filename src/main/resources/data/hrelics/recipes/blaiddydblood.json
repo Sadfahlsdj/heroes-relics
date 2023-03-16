@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "hrelics:ancientblood"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    },
+    "X": {
+      "item": "minecraft:diamond_helmet"
+    },
+    "Y": {
+      "item": "minecraft:diamond_leggings"
+    },
+    "Z": {
+      "item": "minecraft:diamond_boots"
+    }
+  },
+  "pattern": [
+    " X ",
+    "Y#Y",
+    "ZSZ"
+  ],
+  "result": {
+    "count": 1,
+    "item": "hrelics:blaiddydblood"
+  }
+}
