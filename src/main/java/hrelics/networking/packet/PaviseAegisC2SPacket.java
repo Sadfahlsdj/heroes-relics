@@ -14,8 +14,8 @@ public class PaviseAegisC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender){
         if(((PlayerEntityInterface) player).getPaviseAegisTicks() == 0) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 60, 2), player);
-            ((PlayerEntityInterface) player).setPaviseAegisTicks(260);
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 12, 4), player);
+            ((PlayerEntityInterface) player).setPaviseAegisTicks(100);
         }
         else{
             double cooldownSeconds = (double)(((PlayerEntityInterface) player).getPaviseAegisTicks()) / 20.0;

@@ -4,12 +4,16 @@ import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.entity.mob.VexEntity;
+import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -115,6 +119,14 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     @Inject(method = "attack", at = @At("HEAD"))
     protected void getTarget(Entity target, CallbackInfo cir){
         this.t = target;
+    }
+
+    @Inject(method="attack", at = @At("HEAD"))
+    protected void aegisShieldSlow(Entity target, CallbackInfo cir){
+        LivingEntity targetEntity = (LivingEntity) target;
+        if(user.getOffHandStack().isOf(ModItems.AegisShield) && targetEntity instanceof WardenEntity){
+            targetEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 0), user);
+        }
     }
 
     @ModifyArg(method = "attack", at = @At(value = "INVOKE",
