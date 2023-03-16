@@ -6,22 +6,22 @@
       "item": "hrelics:ancientblood"
     },
     "X": {
-      "item": "minecraft:dragon_egg"
+      "item": "minecraft:bow"
     },
     "Y": {
-      "item": "minecraft:dragon_breath"
+      "item": "minecraft:crossbow"
     },
     "Z": {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:tipped_arrow"
     }
   },
   "pattern": [
-    "ZXZ",
-    "Y#Y",
-    "   "
+    " ZX",
+    "Z#Y",
+    " ZX"
   ],
   "result": {
     "count": 1,
-    "item": "hrelics:heavenlyblood"
+    "item": "hrelics:rieganblood"
   }
 }
