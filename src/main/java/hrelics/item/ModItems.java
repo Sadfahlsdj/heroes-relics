@@ -42,13 +42,13 @@ public class ModItems {
     //unique bloods for weapon crafting
     public static final Item AncientBlood = registerItem("ancientblood", new Item(new FabricItemSettings()));
 
-    public static final Item BlaiddydBlood = registerItem("blaiddydblood", new Item(new FabricItemSettings()));
-    public static final Item BeastBlood = registerItem("beastblood", new Item(new FabricItemSettings()));
-    public static final Item HeavenlyBlood = registerItem("heavenlyblood", new Item(new FabricItemSettings()));
-    public static final Item RieganBlood = registerItem("rieganblood", new Item(new FabricItemSettings()));
-    public static final Item GautierBlood = registerItem("gautierblood", new Item(new FabricItemSettings()));
-    public static final Item GalateaBlood = registerItem("galateablood", new Item(new FabricItemSettings()));
-    public static final Item CharonBlood = registerItem("charonblood", new Item(new FabricItemSettings()));
+    public static final Item BlaiddydBlood = registerItem("blaiddydblood", new BloodItem(new FabricItemSettings()));
+    public static final Item BeastBlood = registerItem("beastblood", new BloodItem(new FabricItemSettings()));
+    public static final Item HeavenlyBlood = registerItem("heavenlyblood", new BloodItem(new FabricItemSettings()));
+    public static final Item RieganBlood = registerItem("rieganblood", new BloodItem(new FabricItemSettings()));
+    public static final Item GautierBlood = registerItem("gautierblood", new BloodItem(new FabricItemSettings()));
+    public static final Item GalateaBlood = registerItem("galateablood", new BloodItem(new FabricItemSettings()));
+    public static final Item CharonBlood = registerItem("charonblood", new BloodItem(new FabricItemSettings()));
 
 
     //important

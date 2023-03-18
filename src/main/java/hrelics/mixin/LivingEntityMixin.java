@@ -50,7 +50,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
        if(target instanceof PlayerEntity && target.getOffHandStack().isOf(ModItems.AegisShield)){
            //aegis shield passive DR
-           f -= 2;
+           f -= 1;
        }
        //testing
        //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
