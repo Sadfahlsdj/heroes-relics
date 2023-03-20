@@ -67,6 +67,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
     }
     StatusEffectInstance instance;
 
+
     @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
             at = @At("HEAD"))
     protected void getStatusEffectInstance(StatusEffectInstance instance, Entity s, CallbackInfoReturnable<Boolean> cir){

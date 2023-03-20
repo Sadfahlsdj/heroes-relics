@@ -154,8 +154,10 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
                 ((PlayerEntityInterface) user).decrementRuinedSkyHits();
             }
         }
-        else if(user.getMainHandStack().isOf(ModItems.Blutgang) && ((PlayerEntityInterface) user).getWitherHits() > 0){
+        else if(user.getMainHandStack().isOf(ModItems.Blutgang) && ((PlayerEntityInterface) user).getWitherHits() > 0
+        && t instanceof WitherEntity){
             f += 20;
+            //decrementing happens in the BlutgangItem posthit
         }
         //HeroesRelics.LOGGER.info("{}", f);
 
