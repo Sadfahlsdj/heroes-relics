@@ -157,7 +157,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         else if(user.getMainHandStack().isOf(ModItems.Blutgang) && ((PlayerEntityInterface) user).getWitherHits() > 0
         && t instanceof WitherEntity){
             f += 20;
-            //decrementing happens in the BlutgangItem posthit
+            //decrementing happens in the BlutgangItem postHit
         }
         //HeroesRelics.LOGGER.info("{}", f);
 
