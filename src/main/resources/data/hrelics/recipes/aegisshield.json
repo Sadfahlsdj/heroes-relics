@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:shield"
+    },
+    "Y": {
+      "item": "minecraft:diamond_sword"
+    },
+    "Z": {
+      "item": "minecraft:echo_shard"
+    }
+  },
+  "pattern": [
+    "ZYZ",
+    "Y#Y",
+    "ZYZ"
+  ],
+  "result": {
+    "count": 1,
+    "item": "hrelics:aegisshield"
+  }
+}

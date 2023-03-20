@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "hrelics:blaiddydblood"
+      "item": "hrelics:beastblood"
     },
     "Y": {
       "item": "hrelics:umbralsteel"
@@ -16,6 +16,6 @@
   ],
   "result": {
     "count": 1,
-    "item": "hrelics:areadbhar"
+    "item": "hrelics:blutgang"
   }
 }
