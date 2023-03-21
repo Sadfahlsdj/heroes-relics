@@ -1,13 +1,25 @@
 package hrelics.util;
 
+import com.google.common.collect.Maps;
 import hrelics.item.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+import net.minecraft.client.item.ClampedModelPredicateProvider;
+import net.minecraft.client.item.ModelPredicateProvider;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+
+import java.util.Map;
 
 public class ModModelPredicateProvider {
     public static void registerModModels(){
+        //failnaught
         registerBow(ModItems.Failnaught);
+        //aegis shield
+        ModelPredicateProviderRegistry.register(ModItems.AegisShield, new Identifier("blocking"), (stack, world, entity, seed) -> {
+            return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
+        });
     }
 
     private static void registerBow(Item bow) {
@@ -26,4 +38,10 @@ public class ModModelPredicateProvider {
                 (stack, world, entity, seed) -> entity != null && entity.isUsingItem()
                         && entity.getActiveItem() == stack ? 1.0f : 0.0f);
     }
+
+    private static final Map<Item, Map<Identifier, ModelPredicateProvider>> ITEM_SPECIFIC = Maps.newHashMap();
+    private static final Map<Identifier, ModelPredicateProvider> GLOBAL = Maps.newHashMap();
+
+
+
 }
