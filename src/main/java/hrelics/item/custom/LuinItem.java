@@ -1,11 +1,14 @@
 package hrelics.item.custom;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
+import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 
 
 public class LuinItem extends SwordItem {
@@ -27,5 +30,19 @@ public class LuinItem extends SwordItem {
         }
 
         return super.postHit(stack, target, attacker);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        BannerItem.appendBannerTooltip(stack, tooltip);
+        if(Screen.hasShiftDown()){
+            tooltip.add(Text.translatable("item.hrelics.luin.tooltip.shift1"));
+            tooltip.add(Text.translatable("item.hrelics.luin.tooltip.shift2"));
+        }
+        else{
+            tooltip.add(Text.translatable("item.hrelics.luin.tooltip.flavor"));
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shiftnotheld"));
+        }
+
     }
 }

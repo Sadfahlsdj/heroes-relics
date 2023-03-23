@@ -1,6 +1,8 @@
 package hrelics.item.custom;
 
 import hrelics.HeroesRelics;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -10,11 +12,14 @@ import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class FailnaughtItem extends BowItem{
@@ -28,6 +33,21 @@ public class FailnaughtItem extends BowItem{
     @Override
     public boolean isEnchantable(ItemStack stack){
         return false;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        BannerItem.appendBannerTooltip(stack, tooltip);
+        if(Screen.hasShiftDown()){
+            tooltip.add(Text.translatable("item.hrelics.failnaught.tooltip.shift1"));
+            tooltip.add(Text.translatable("item.hrelics.failnaught.tooltip.shift2"));
+            tooltip.add(Text.translatable("item.hrelics.failnaught.tooltip.shift3"));
+        }
+        else{
+            tooltip.add(Text.translatable("item.hrelics.failnaught.tooltip.flavor"));
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shiftnotheld"));
+        }
+
     }
 
     @Override

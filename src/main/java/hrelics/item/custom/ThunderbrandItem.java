@@ -1,14 +1,17 @@
 package hrelics.item.custom;
 
 import hrelics.HeroesRelics;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ThunderbrandItem extends SwordItem {
     public ThunderbrandItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Item.Settings settings) {
@@ -45,6 +48,20 @@ public class ThunderbrandItem extends SwordItem {
             ((PlayerEntityInterface) attacker).decrementLightningHits();
         }
         return super.postHit(stack, target, attacker);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        BannerItem.appendBannerTooltip(stack, tooltip);
+        if(Screen.hasShiftDown()){
+            tooltip.add(Text.translatable("item.hrelics.thunderbrand.tooltip.shift1"));
+            tooltip.add(Text.translatable("item.hrelics.thunderbrand.tooltip.shift2"));
+        }
+        else{
+            tooltip.add(Text.translatable("item.hrelics.thunderbrand.tooltip.flavor"));
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shiftnotheld"));
+        }
+
     }
 
 }

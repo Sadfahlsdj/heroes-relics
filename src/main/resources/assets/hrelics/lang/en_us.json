@@ -29,5 +29,37 @@
   "item.hrelics.aegisshield.tooltip.shiftnotheld": "Press shift for more information!",
   "item.hrelics.aegisshield.tooltip.shift1": "Cannot be disabled; reduces all damage taken by 1 while held in the off-hand",
   "item.hrelics.aegisshield.tooltip.shift2": "Will unleash its full power against a beast of the deep",
-  "item.hrelics.aegisshield.tooltip.shift3": "Combat art: Pavise/Aegis: Blocks all damage for a split second; 5 second cooldown"
+  "item.hrelics.aegisshield.tooltip.shift3": "Combat art: Pavise/Aegis: Blocks all damage for a split second; 5 second cooldown",
+
+  "item.hrelics.areadbhar.tooltip.flavor": "The ancient lance of House Blaiddyd",
+  "item.hrelics.areadbhar.tooltip.shift1": "Combat art: Atrocity",
+  "item.hrelics.areadbhar.tooltip.shift2": "Imbues your next strike with inhuman strength",
+
+  "item.hrelics.blutgang.tooltip.flavor": "The forgotten sword once wielded by Maurice",
+  "item.hrelics.blutgang.tooltip.shift1": "Combat art: Beast Fang",
+  "item.hrelics.blutgang.tooltip.shift2": "Inflicts your target with a powerful wither effect",
+  "item.hrelics.blutgang.tooltip.shift3": "Deals devastating damage to monsters made of this disease",
+
+  "item.hrelics.creatorsword.tooltip.flavor": "The divine sword once used by Nemesis to oppress the world",
+  "item.hrelics.creatorsword.tooltip.shift1": "Heavenly construction grants this sword extra range",
+  "item.hrelics.creatorsword.tooltip.shift2": "Combat art: Ruptured Heaven",
+  "item.hrelics.creatorsword.tooltip.shift3": "Grants your next attack heavenly strength and further range",
+
+  "item.hrelics.failnaught.tooltip.flavor": "The ancient bow of House Riegan",
+  "item.hrelics.failnaught.tooltip.shift1": "Does not consume arrows; always shoots perfectly straight",
+  "item.hrelics.failnaught.tooltip.shift2": "Combat art: Fallen Star",
+  "item.hrelics.failnaught.tooltip.shift3": "Renders your target unable to deal melee damage for a short time",
+
+  "item.hrelics.lanceofruin.tooltip.flavor": "The ancient lance of House Gautier",
+  "item.hrelics.lanceofruin.tooltip.shift1": "Combat art: Ruined Sky",
+  "item.hrelics.lanceofruin.tooltip.shift2": "Strengthens your next attack",
+  "item.hrelics.lanceofruin.tooltip.shift3": "Effective against flying enemies; devastates dragons",
+
+  "item.hrelics.luin.tooltip.flavor": "The ancient lance of House Galatea",
+  "item.hrelics.luin.tooltip.shift1": "Combat art: Burning Quake",
+  "item.hrelics.luin.tooltip.shift2": "Inflicts your target with a powerful burning effect",
+
+  "item.hrelics.thunderbrand.tooltip.flavor": "The ancient sword of House Charon",
+  "item.hrelics.thunderbrand.tooltip.shift1": "Combat art: Foudroyant Strike",
+  "item.hrelics.thunderbrand.tooltip.shift2": "Imbues your next two strikes with the power of lightning"
 }
