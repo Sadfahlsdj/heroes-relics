@@ -1,6 +1,7 @@
 package hrelics.item.custom;
 
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -8,6 +9,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.ItemTags;
 //import net.minecraft.tag.ItemTags; deprecated in 1.19.3
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -44,6 +46,16 @@ public class AegisShieldItem extends ShieldItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         BannerItem.appendBannerTooltip(stack, tooltip);
+        if(Screen.hasShiftDown()){
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift1"));
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift2"));
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift3"));
+        }
+        else{
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.flavor"));
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shiftnotheld"));
+        }
+
     }
 
     @Override

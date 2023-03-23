@@ -23,5 +23,11 @@
   "itemGroup.hrelics.relicweapon": "Relic Weapons",
 
   "key.category.hrelics.heroesrelics": "Heroes' Relics Keys",
-  "key.hrelics.combatart": "Combat Art"
+  "key.hrelics.combatart": "Combat Art",
+
+  "item.hrelics.aegisshield.tooltip.flavor": "The ancient shield of House Fraldarius",
+  "item.hrelics.aegisshield.tooltip.shiftnotheld": "Press shift for more information!",
+  "item.hrelics.aegisshield.tooltip.shift1": "Cannot be disabled; reduces all damage taken by 1 while held in the off-hand",
+  "item.hrelics.aegisshield.tooltip.shift2": "Will unleash its full power against a beast of the deep",
+  "item.hrelics.aegisshield.tooltip.shift3": "Combat art: Pavise/Aegis: Blocks all damage for a split second; 5 second cooldown"
 }
