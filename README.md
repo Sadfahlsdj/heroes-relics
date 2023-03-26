@@ -1,7 +1,12 @@
 # heroes-relics
 
-Stupid chinese piece of shit laptop had some esoteric boot error which caused me to have to reinstall windows if I wanted to get more use out of it than I would a 
-pancake-shaped brick, so this won't be halfway serviceable for a MINUTE
+A small mod that adds several weapons/items from a small indie turn-based JRPG.
+
+Reading the wiki is HIGHLY recommended(but not required).
+
+If you want to read tooltips(also highly recommended) use this: https://www.curseforge.com/minecraft/mc-mods/tooltipfix
+
+This is my first mod, so bugs are not so much of a nuisance as a certainty. In addition, this is entirely untested in multiplayer so please let me know about any game-breaking bugs and I'll do my best to ask someone else to help me fix them.
 
 Credits:
 
