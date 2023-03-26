@@ -39,6 +39,9 @@ public class ModItems {
     public static final Item UmbralSteel = registerItem("umbralsteel",
             new Item(new FabricItemSettings()));
 
+    public static final Item AncientArmory = registerItem("ancientarmory",
+            new AncientArmoryItem(new FabricItemSettings()));
+
     //unique bloods for weapon crafting
     public static final Item AncientBlood = registerItem("ancientblood", new Item(new FabricItemSettings()));
 
@@ -81,6 +84,8 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, GalateaBlood);
         addToItemGroup(ModItemGroup.RELICITEMS, CharonBlood);
         addToItemGroup(ModItemGroup.RELICITEMS, AncientBlood);
+
+        addToItemGroup(ModItemGroup.RELICITEMS, AncientArmory);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){

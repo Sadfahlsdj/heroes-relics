@@ -51,6 +51,9 @@ public class KeyInputHandler {
                else if(p.getOffHandStack().isOf(ModItems.AegisShield)){
                    ClientPlayNetworking.send(PAVISEAEGIS, PacketByteBufs.create());
                }
+               else if(p.getOffHandStack().isOf(ModItems.AncientArmory)){
+                   ClientPlayNetworking.send(ANCIENTARMORY, PacketByteBufs.create());
+               }
             }
         });
     }

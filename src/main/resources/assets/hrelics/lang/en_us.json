@@ -62,5 +62,7 @@
 
   "item.hrelics.thunderbrand.tooltip.flavor": "The ancient sword of House Charon",
   "item.hrelics.thunderbrand.tooltip.shift1": "Combat art: Foudroyant Strike",
-  "item.hrelics.thunderbrand.tooltip.shift2": "Imbues your next two strikes with the power of lightning"
+  "item.hrelics.thunderbrand.tooltip.shift2": "Imbues your next two strikes with the power of lightning",
+
+  "item.hrelics.ancientarmory": "Ancient Armory"
 }
