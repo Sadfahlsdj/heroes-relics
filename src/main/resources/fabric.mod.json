@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
 	"id": "heroes-relics",
-	"version": "fuck if i know",
+	"version": "1.0.0",
 	"name": "Heroes' Relics",
-	"description": "NO WAY fire emblem three houses dimitri in mine carft???????",
+	"description": "A small mod that adds several items from a certain turn-based JRPG",
 	"authors": [
 		"Sadfahlsdj"
 	],
