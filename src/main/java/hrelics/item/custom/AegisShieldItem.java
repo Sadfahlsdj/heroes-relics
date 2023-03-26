@@ -47,6 +47,7 @@ public class AegisShieldItem extends ShieldItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         BannerItem.appendBannerTooltip(stack, tooltip);
         if(Screen.hasShiftDown()){
+            tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift4"));
             tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift1"));
             tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift2"));
             tooltip.add(Text.translatable("item.hrelics.aegisshield.tooltip.shift3"));

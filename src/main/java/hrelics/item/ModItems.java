@@ -15,23 +15,23 @@ import net.minecraft.util.Identifier;
 public class ModItems {
 
     public static final Item Areadbhar = registerItem("areadbhar", new AreadbharItem(ModToolMaterials.UMBRAL_STEEL,
-            10, 1.3f, new FabricItemSettings().maxDamage(0)));
+            10, -2.4f, new FabricItemSettings().maxDamage(0)));
 
     public static final Item Thunderbrand = registerItem("thunderbrand", new ThunderbrandItem(ModToolMaterials.UMBRAL_STEEL,
-            3, 1.6f, new FabricItemSettings().maxDamage(0)));
+            3, -2.0f, new FabricItemSettings().maxDamage(0)));
     public static final Item Luin = registerItem("luin", new LuinItem(ModToolMaterials.UMBRAL_STEEL,
-            5, 1.2f, new FabricItemSettings().maxDamage(0)));
+            5, -2.2f, new FabricItemSettings().maxDamage(0)));
 
     public static final Item CreatorSword = registerItem("creatorsword", new CreatorSwordItem(ModToolMaterials.UMBRAL_STEEL,
-            6, 1.0f, new FabricItemSettings().maxDamage(0)));
+            6, -2.4f, new FabricItemSettings().maxDamage(0)));
 
     public static final Item Failnaught = registerItem("failnaught", new FailnaughtItem
             (new FabricItemSettings().maxDamage(0)));
 
     public static final Item LanceOfRuin = registerItem("lanceofruin", new LanceOfRuinItem(ModToolMaterials.UMBRAL_STEEL,
-            5, 1.0f, new FabricItemSettings().maxDamage(0)));
+            5, -2.4f, new FabricItemSettings().maxDamage(0)));
     public static final Item Blutgang = registerItem("blutgang", new BlutgangItem(ModToolMaterials.UMBRAL_STEEL,
-            5, 1.0f, new FabricItemSettings().maxDamage(0)));
+            5, -2.4f, new FabricItemSettings().maxDamage(0)));
 
     public static final Item AegisShield = registerItem("aegisshield",
             new AegisShieldItem(new FabricItemSettings().maxDamage(0)));
