@@ -20,8 +20,10 @@
 		],
 		"client": [
 			"hrelics.HrelicsClient"
+		],
+		"modmenu": [
+			"com.example.mod.ExampleModMenuApiImpl"
 		]
-
 	},
 	"mixins": [
 		"heroes-relics.mixins.json"

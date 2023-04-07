@@ -1,5 +1,6 @@
 package hrelics;
 
+import hrelics.configs.ModConfigs;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
@@ -19,6 +20,8 @@ public class HeroesRelics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModConfigs.registerConfigs();
+
 		ModItemGroup.registerModItemGroup();
 		ModItems.registerModItems();
 		//registerModItemGroup has to go on top of registerModItems
