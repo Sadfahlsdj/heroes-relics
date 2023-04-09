@@ -22,8 +22,20 @@
 			"hrelics.HrelicsClient"
 		],
 		"modmenu": [
-			"com.example.mod.ExampleModMenuApiImpl"
+			"hrelics.ModMenu"
 		]
+	},
+	"custom": {
+		"modmenu": {
+			"parent": {
+				"id": "example-api",
+				"name": "Example API",
+				"description": "Modular example library",
+				"icon": "assets/example-api-module-v1/parent_icon.png",
+				"badges": [ "library" ]
+			},
+			"update_checker": false
+		}
 	},
 	"mixins": [
 		"heroes-relics.mixins.json"
