@@ -1,0 +1,26 @@
+{
+  "atrocity1": {
+    "subtitle": "hrelics.atrocity1",
+    "sounds": [
+      "hrelics:atrocity1"
+    ]
+  },
+  "atrocity2": {
+    "subtitle": "hrelics.atrocity1",
+    "sounds": [
+      "hrelics:atrocity2"
+    ]
+  },
+  "atrocity3": {
+    "subtitle": "hrelics.atrocity1",
+    "sounds": [
+      "hrelics:atrocity3"
+    ]
+  },
+  "atrocity4": {
+    "subtitle": "hrelics.atrocity1",
+    "sounds": [
+      "hrelics:atrocity4"
+    ]
+  }
+}

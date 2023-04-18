@@ -64,5 +64,7 @@
   "item.hrelics.thunderbrand.tooltip.shift1": "Combat art: Foudroyant Strike",
   "item.hrelics.thunderbrand.tooltip.shift2": "Imbues your next two strikes with the power of lightning",
 
-  "item.hrelics.ancientarmory": "Ancient Armory"
+  "item.hrelics.ancientarmory": "Ancient Armory",
+
+  "hrelics.atrocity1": "Combat art activation"
 }

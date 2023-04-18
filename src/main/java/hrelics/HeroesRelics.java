@@ -4,9 +4,11 @@ import hrelics.configs.ModConfigs;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
+import hrelics.sound.ModSounds;
 import hrelics.util.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.sound.SoundEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +31,11 @@ public class HeroesRelics implements ModInitializer {
 		//LOGGER.info("Hello Fabric world!");
 		ModMessages.registerC2SPackets();
 		ModLootTableModifiers.modifyLootTables();
+
+		ModSounds.ATROCITY1 = ModSounds.registerSoundEvent("atrocity1");
+		ModSounds.ATROCITY2 = ModSounds.registerSoundEvent("atrocity2");
+		ModSounds.ATROCITY3 = ModSounds.registerSoundEvent("atrocity3");
+		ModSounds.ATROCITY4 = ModSounds.registerSoundEvent("atrocity4");
 
 	}
 }
