@@ -7,7 +7,7 @@ public class ModConfigs {
     public static SimpleConfig CONFIG;
     private static ModConfigProvider configs;
 
-    public static Boolean VOICE_LINES_ON;
+    public static Boolean VOICE_LINES_ON = true;
     public static int SOME_INT;
     public static double SOME_DOUBLE;
     public static int MAX_DAMAGE_DOWSING_ROD;
@@ -22,14 +22,15 @@ public class ModConfigs {
     }
 
     private static void createConfigs() {
-        configs.addKeyValuePair(new Pair<>("key.test.value1", false), "Boolean");
+        configs.addKeyValuePair(new Pair<>("key.test.value1", true), "Boolean");
         configs.addKeyValuePair(new Pair<>("key.test.value2", 50), "int");
         configs.addKeyValuePair(new Pair<>("key.test.value3", 4142.5), "double");
         configs.addKeyValuePair(new Pair<>("dowsing.rod.max.damage", 32), "int");
     }
 
     private static void assignConfigs() {
-        VOICE_LINES_ON = CONFIG.getOrDefault("key.test.value1", true);
+        //this is commented out cause it returns false every goddamn time for some reason EVEN THOUGH THE DEFAULT & THE CREATE VALUE ARE BOTH TRUE
+        //VOICE_LINES_ON = CONFIG.getOrDefault("key.test.value1", true);
         SOME_INT = CONFIG.getOrDefault("key.test.value2", 42);
         SOME_DOUBLE = CONFIG.getOrDefault("key.test.value3", 42.0d);
         MAX_DAMAGE_DOWSING_ROD = CONFIG.getOrDefault("dowsing.rod.max.damage", 32);
