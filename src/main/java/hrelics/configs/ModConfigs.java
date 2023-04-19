@@ -29,7 +29,7 @@ public class ModConfigs {
     }
 
     private static void assignConfigs() {
-        VOICE_LINES_ON = CONFIG.getOrDefault("key.test.value1", false);
+        VOICE_LINES_ON = CONFIG.getOrDefault("key.test.value1", true);
         SOME_INT = CONFIG.getOrDefault("key.test.value2", 42);
         SOME_DOUBLE = CONFIG.getOrDefault("key.test.value3", 42.0d);
         MAX_DAMAGE_DOWSING_ROD = CONFIG.getOrDefault("dowsing.rod.max.damage", 32);

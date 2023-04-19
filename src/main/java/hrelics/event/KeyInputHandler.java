@@ -1,5 +1,7 @@
 package hrelics.event;
 
+import hrelics.HeroesRelics;
+import hrelics.configs.ModConfigs;
 import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
 import hrelics.networking.packet.AtrocityC2SPacket;
@@ -35,25 +37,25 @@ public class KeyInputHandler {
             PlayerEntity p = client.player;
             if(combatArt.wasPressed()){
                if(p.getMainHandStack().isOf(ModItems.Areadbhar)){
+                   HeroesRelics.LOGGER.info(String.valueOf(ModConfigs.VOICE_LINES_ON));
                    ClientPlayNetworking.send(ATROCITY, PacketByteBufs.create());
-                   int lastAtrocityRNG = 999;
-                   int atrocityRNG = rand.nextInt(4);
-                   if(lastAtrocityRNG == atrocityRNG){
-                       atrocityRNG = (atrocityRNG + 1) % 4;
-                   }
-                   lastAtrocityRNG = atrocityRNG;
-                   World w = p.getWorld();
-                   if(atrocityRNG == 0){
-                       w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY1, SoundCategory.PLAYERS, 1f, 1f, true);
-                   }
-                   else if(atrocityRNG == 1){
-                       w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY2, SoundCategory.PLAYERS, 1f, 1f, true);
-                   }
-                   else if(atrocityRNG == 2){
-                       w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY3, SoundCategory.PLAYERS, 1f, 1f, true);
-                   }
-                   else if(atrocityRNG == 3){
-                       w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY4, SoundCategory.PLAYERS, 1f, 1f, true);
+                   if(ModConfigs.VOICE_LINES_ON) {
+                       int lastAtrocityRNG = 999;
+                       int atrocityRNG = rand.nextInt(4);
+                       if (lastAtrocityRNG == atrocityRNG) {
+                           atrocityRNG = (atrocityRNG + 1) % 4;
+                       }
+                       lastAtrocityRNG = atrocityRNG;
+                       World w = p.getWorld();
+                       if (atrocityRNG == 0) {
+                           w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY1, SoundCategory.PLAYERS, 1f, 1f, true);
+                       } else if (atrocityRNG == 1) {
+                           w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY2, SoundCategory.PLAYERS, 1f, 1f, true);
+                       } else if (atrocityRNG == 2) {
+                           w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY3, SoundCategory.PLAYERS, 1f, 1f, true);
+                       } else if (atrocityRNG == 3) {
+                           w.playSoundAtBlockCenter(p.getBlockPos(), ModSounds.ATROCITY4, SoundCategory.PLAYERS, 1f, 1f, true);
+                       }
                    }
                }
                else if(p.getMainHandStack().isOf(ModItems.Thunderbrand)){
