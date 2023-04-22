@@ -22,6 +22,13 @@ public class ModSounds {
     public static SoundEvent FALLENSTAR2;
 
     public static SoundEvent FOUDROYANT1;
+    public static SoundEvent FOUDROYANT2;
+
+    public static SoundEvent RUINEDSKY1;
+    public static SoundEvent RUINEDSKY2;
+
+    public static SoundEvent RHEAVEN1;
+    public static SoundEvent RHEAVEN2;
     public static SoundEvent registerSoundEvent(String name){
         Identifier id = new Identifier(HeroesRelics.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));

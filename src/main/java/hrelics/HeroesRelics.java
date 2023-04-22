@@ -32,10 +32,21 @@ public class HeroesRelics implements ModInitializer {
 		ModMessages.registerC2SPackets();
 		ModLootTableModifiers.modifyLootTables();
 
+		//sounds
 		ModSounds.ATROCITY1 = ModSounds.registerSoundEvent("atrocity1");
 		ModSounds.ATROCITY2 = ModSounds.registerSoundEvent("atrocity2");
 		ModSounds.ATROCITY3 = ModSounds.registerSoundEvent("atrocity3");
 		ModSounds.ATROCITY4 = ModSounds.registerSoundEvent("atrocity4");
+		ModSounds.BQUAKE1 = ModSounds.registerSoundEvent("bquake1");
+		ModSounds.BQUAKE2 = ModSounds.registerSoundEvent("bquake2");
+		ModSounds.FALLENSTAR1 = ModSounds.registerSoundEvent("fallenstar1");
+		ModSounds.FALLENSTAR2 = ModSounds.registerSoundEvent("fallenstar2");
+		ModSounds.FOUDROYANT1 = ModSounds.registerSoundEvent("foudroyant1");
+		ModSounds.FOUDROYANT2 = ModSounds.registerSoundEvent("foudroyant2");
+		ModSounds.RUINEDSKY1 = ModSounds.registerSoundEvent("ruinedsky1");
+		ModSounds.RUINEDSKY2 = ModSounds.registerSoundEvent("ruinedsky2");
+		ModSounds.RHEAVEN1 = ModSounds.registerSoundEvent("rheaven1");
+		ModSounds.RHEAVEN2 = ModSounds.registerSoundEvent("rheaven2");
 
 	}
 }
