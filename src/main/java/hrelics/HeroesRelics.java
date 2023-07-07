@@ -47,6 +47,7 @@ public class HeroesRelics implements ModInitializer {
 		ModSounds.RUINEDSKY2 = ModSounds.registerSoundEvent("ruinedsky2");
 		ModSounds.RHEAVEN1 = ModSounds.registerSoundEvent("rheaven1");
 		ModSounds.RHEAVEN2 = ModSounds.registerSoundEvent("rheaven2");
+		ModSounds.WARP = ModSounds.registerSoundEvent("warp");
 
 	}
 }

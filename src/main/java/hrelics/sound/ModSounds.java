@@ -29,6 +29,9 @@ public class ModSounds {
 
     public static SoundEvent RHEAVEN1;
     public static SoundEvent RHEAVEN2;
+
+    //warp
+    public static SoundEvent WARP;
     public static SoundEvent registerSoundEvent(String name){
         Identifier id = new Identifier(HeroesRelics.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));

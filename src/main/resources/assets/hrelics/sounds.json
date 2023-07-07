@@ -22,5 +22,11 @@
     "sounds": [
       "hrelics:atrocity4"
     ]
+  },
+  "warp": {
+    "subtitle": "hrelics.warp",
+    "sounds": [
+      "hrelics:warp"
+    ]
   }
 }
