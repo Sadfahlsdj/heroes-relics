@@ -53,8 +53,9 @@ public class ModItems {
     public static final Item GalateaBlood = registerItem("galateablood", new BloodItem(new FabricItemSettings()));
     public static final Item CharonBlood = registerItem("charonblood", new BloodItem(new FabricItemSettings()));
 
-    //staves (super WIP)
+    //staves (not as wip anymore actually)
     public static final Item WarpStaff = registerItem("warpstaff", new WarpStaffItem(new FabricItemSettings()));
+    public static final Item RescueStaff = registerItem("rescuestaff", new RescueStaffItem(new FabricItemSettings()));
 
 
     //important
@@ -90,6 +91,7 @@ public class ModItems {
 
         addToItemGroup(ModItemGroup.RELICITEMS, AncientArmory);
         addToItemGroup(ModItemGroup.RELICITEMS, WarpStaff);
+        addToItemGroup(ModItemGroup.RELICITEMS, RescueStaff);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){
