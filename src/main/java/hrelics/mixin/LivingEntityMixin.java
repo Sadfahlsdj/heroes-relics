@@ -13,7 +13,10 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.List;
 
 
 @Mixin(LivingEntity.class)
@@ -125,6 +129,23 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
         if(nagaWaitTicks == 0 && isHitByNaga == true){
             isHitByNaga = false;
+            setNagaActivation(true);
+            Vec3d pos = target.getPos();
+            int radius = 5; //radius of naga AoE
+            LivingEntity wielder = user;
+            List<Entity> nearbyEntities = target.getWorld().getOtherEntities(target, Box.from(pos).expand(100));
+            for (Entity nearbyEntity : nearbyEntities) {
+                Iterable<ItemStack> itemStacks = nearbyEntity.getItemsEquipped();
+                for (ItemStack i : itemStacks) {
+                    if (ItemStack.areEqual(i, ModItems.NagaTome.getDefaultStack())) {
+                        wielder = (LivingEntity) nearbyEntity;
+                    }
+                }
+            }
+            target.getWorld().getOtherEntities(wielder, Box.from(pos).expand(radius), (entity) ->
+                    pos.squaredDistanceTo(entity.getPos()) < Math.pow(radius, 2)).forEach(
+                    (entity) -> entity.damage(DamageSource.MAGIC, 20)
+            );
             HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
         } //filler comment to let me push
     }
@@ -139,6 +160,8 @@ public class LivingEntityMixin implements LivingEntityInterface {
     public int nagaWaitTicks = 0;
     //set ticks to wait before naga tome AoE
     public boolean isHitByNaga = false;
+
+    public boolean nagaActivation = false;
     public void setBoostedFireTicks(int i){
         boostedFireTicks = i;
 
@@ -162,5 +185,13 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
     public boolean getHitByNaga(){
         return isHitByNaga;
+    }
+
+    public void setNagaActivation(boolean b){
+        nagaActivation = b;
+    }
+
+    public boolean getNagaActivation(){
+        return nagaActivation;
     }
 }

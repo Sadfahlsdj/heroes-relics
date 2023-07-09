@@ -4,6 +4,8 @@ public interface LivingEntityInterface {
 
     int nagaWaitTicks = 0;
     boolean isHitByNaga = false;
+
+    public boolean nagaActivation = false;
     public default void setBoostedFireTicks(int i){
 
     }
@@ -20,6 +22,13 @@ public interface LivingEntityInterface {
 
     public default void setHitByNaga(boolean b){
 
+    }
+
+    public default void setNagaActivation(boolean b){
+
+    }
+    public default boolean getNagaActivation(){
+        return nagaActivation;
     }
 
     public default boolean getHitByNaga(){ //filler comment to let me push

@@ -16,6 +16,8 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import static net.minecraft.entity.damage.DamageSource.*;
@@ -57,13 +59,26 @@ public class NagaProjectileEntity extends SnowballEntity {
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        Entity entity = entityHitResult.getEntity();
+        Entity target = entityHitResult.getEntity();
         int i = 1; //
-        entity.damage(DamageSource.MAGIC, i);
+        target.damage(DamageSource.MAGIC, i);
 
-        ((LivingEntityInterface) entity).setNagaWaitTicks(30);
-        ((LivingEntityInterface) entity).setHitByNaga(true);
-        HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) entity).getNagaWaitTicks()));
+        ((LivingEntityInterface) target).setNagaWaitTicks(30);
+        ((LivingEntityInterface) target).setHitByNaga(true);
+        HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) target).getNagaWaitTicks()));
+
+        /*while(true){
+            if(((LivingEntityInterface) target).getNagaActivation() == true){
+                Vec3d pos = target.getPos();
+                int radius = 2; //radius of naga AoE
+                target.getWorld().getOtherEntities(target, Box.from(pos).expand(radius), (entity) ->
+                        pos.squaredDistanceTo(target.getPos()) < Math.pow(radius, 2)).forEach(
+                        (entity) -> entity.damage(DamageSource.MAGIC, 20)
+                );
+            }
+            ((LivingEntityInterface) target).setNagaActivation(false);
+            break;
+        }*/
 
         /*if(((LivingEntityInterface) entity).getNagaWaitTicks() == 0){ //filler comment to let me push
             HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
