@@ -65,7 +65,7 @@ public class NagaProjectileEntity extends SnowballEntity {
         ((LivingEntityInterface) entity).setHitByNaga(true);
         HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) entity).getNagaWaitTicks()));
 
-        /*if(((LivingEntityInterface) entity).getNagaWaitTicks() == 0){
+        /*if(((LivingEntityInterface) entity).getNagaWaitTicks() == 0){ //filler comment to let me push
             HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
         }*/
     }

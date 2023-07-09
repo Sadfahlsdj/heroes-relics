@@ -22,7 +22,7 @@ public interface LivingEntityInterface {
 
     }
 
-    public default boolean getHitByNaga(){
+    public default boolean getHitByNaga(){ //filler comment to let me push
         return isHitByNaga;
     }
 }

@@ -25,7 +25,7 @@ public class NagaProjectileItem extends SnowballItem {
             snowballEntity.setItem(itemStack);
             snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
             world.spawnEntity(snowballEntity);
-        }
+        } //filler comment to let me push
 
         user.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!user.getAbilities().creativeMode) {

@@ -126,7 +126,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
         if(nagaWaitTicks == 0 && isHitByNaga == true){
             isHitByNaga = false;
             HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
-        }
+        } //filler comment to let me push
     }
 
 
