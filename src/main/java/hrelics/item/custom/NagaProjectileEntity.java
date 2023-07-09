@@ -1,5 +1,6 @@
 package hrelics.item.custom;
 
+import hrelics.HeroesRelics;
 import hrelics.item.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,6 +17,8 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
+
+import static net.minecraft.entity.damage.DamageSource.*;
 
 public class NagaProjectileEntity extends SnowballEntity {
 
@@ -55,8 +58,16 @@ public class NagaProjectileEntity extends SnowballEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = entity instanceof BlazeEntity ? 3 : 0;
-        entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i);
+        int i = 1; //
+        entity.damage(DamageSource.MAGIC, i);
+
+        ((LivingEntityInterface) entity).setNagaWaitTicks(30);
+        ((LivingEntityInterface) entity).setHitByNaga(true);
+        HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) entity).getNagaWaitTicks()));
+
+        /*if(((LivingEntityInterface) entity).getNagaWaitTicks() == 0){
+            HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
+        }*/
     }
 
     protected void onCollision(HitResult hitResult) {

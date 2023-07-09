@@ -96,6 +96,9 @@ public class LivingEntityMixin implements LivingEntityInterface {
         if(boostedWitherTicks > 0){
             boostedWitherTicks--;
         }
+        if(nagaWaitTicks > 0){
+            nagaWaitTicks--;
+        }
         Item mainHandItem = user.getMainHandStack().getItem();
         if(mainHandItem instanceof ToolItem) {
             //if mainhand is of tool material UMBRAL_STEEL & offhand is aegis shield & shieldselfdamageticks < 20, start ticking up
@@ -120,11 +123,10 @@ public class LivingEntityMixin implements LivingEntityInterface {
             }
         }
 
-
-
-
-
-
+        if(nagaWaitTicks == 0 && isHitByNaga == true){
+            isHitByNaga = false;
+            HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
+        }
     }
 
 
@@ -134,6 +136,9 @@ public class LivingEntityMixin implements LivingEntityInterface {
     public int shieldSelfDamageTicks = 0;
     //used for the selfdamage when holding aegis shield + a relic weapon
 
+    public int nagaWaitTicks = 0;
+    //set ticks to wait before naga tome AoE
+    public boolean isHitByNaga = false;
     public void setBoostedFireTicks(int i){
         boostedFireTicks = i;
 
@@ -142,5 +147,20 @@ public class LivingEntityMixin implements LivingEntityInterface {
     }
     public void setBoostedWitherTicks(int i){
         boostedWitherTicks = i;
+    }
+
+    public void setNagaWaitTicks(int i){
+        nagaWaitTicks = i;
+    }
+
+    public int getNagaWaitTicks(){
+        return nagaWaitTicks;
+    }
+    public void setHitByNaga(boolean b){
+        isHitByNaga = b;
+    }
+
+    public boolean getHitByNaga(){
+        return isHitByNaga;
     }
 }
