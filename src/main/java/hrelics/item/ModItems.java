@@ -4,6 +4,10 @@ import hrelics.HeroesRelics;
 import hrelics.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
@@ -57,6 +61,16 @@ public class ModItems {
     public static final Item WarpStaff = registerItem("warpstaff", new WarpStaffItem(new FabricItemSettings()));
     public static final Item RescueStaff = registerItem("rescuestaff", new RescueStaffItem(new FabricItemSettings()));
 
+    public static final Item NagaTome = registerItem("nagatome", new NagaTomeItem(new FabricItemSettings()));
+    public static final EntityType<NagaProjectileEntity> NagaProjectileEntity = FabricEntityTypeBuilder.<NagaProjectileEntity>create(
+                    SpawnGroup.MISC, NagaProjectileEntity::new)
+            .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+            .trackRangeBlocks(32).trackedUpdateRate(20)
+            .build(); //what the fuck
+    public static final Item NagaProjectileItem = registerItem("nagaprojectileitem", new NagaProjectileItem(new FabricItemSettings()));
+
+    public static final EntityType NagaProjectileEntityType = registerEntity("nagaprojectileentitytype", NagaProjectileEntity);
+
 
     //important
 
@@ -64,6 +78,10 @@ public class ModItems {
 
         return Registry.register(Registries.ITEM, new Identifier(HeroesRelics.MOD_ID, name), item);
 
+    }
+
+    private static EntityType registerEntity(String name, EntityType entityType){
+        return Registry.register(Registries.ENTITY_TYPE, new Identifier(HeroesRelics.MOD_ID, name), entityType);
     }
 
     public static void addItemsToItemGroup(){
@@ -92,6 +110,7 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, AncientArmory);
         addToItemGroup(ModItemGroup.RELICITEMS, WarpStaff);
         addToItemGroup(ModItemGroup.RELICITEMS, RescueStaff);
+        addToItemGroup(ModItemGroup.RELICITEMS, NagaTome);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){
