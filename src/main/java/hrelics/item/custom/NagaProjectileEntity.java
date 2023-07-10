@@ -64,6 +64,8 @@ public class NagaProjectileEntity extends SnowballEntity {
         int i = 1; //
         target.damage(DamageSource.MAGIC, i);
 
+        //below is part of working but extremely inefficient code that is commented out in order to use birb's code instead
+
         /*((LivingEntityInterface) target).setNagaWaitTicks(30);
         ((LivingEntityInterface) target).setHitByNaga(true);
         HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) target).getNagaWaitTicks()));*
@@ -72,7 +74,7 @@ public class NagaProjectileEntity extends SnowballEntity {
             ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleDamageEvent(this.getOwner(), target.getPos());
         }
 
-
+        //below is working but extremely inefficient code that is commented out in order to use birb's code instead
 
         /*while(true){
             if(((LivingEntityInterface) target).getNagaActivation() == true){
