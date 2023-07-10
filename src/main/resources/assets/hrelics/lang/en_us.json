@@ -21,6 +21,10 @@
   "item.hrelics.charonblood": "Blood of Charon",
 
   "item.hrelics.warpstaff": "Warp",
+  "item.hrelics.rescuestaff": "Rescue",
+  "item.hrelics.nagatome": "Book of Naga",
+  "item.hrelics.nagaprojectileitem": "Naga Projectile Item",
+  "item.hrelics.nagaprojectileentitytype": "Naga Projectile Entity",
 
   "itemGroup.hrelics.relicweapon": "Relic Weapons",
 
