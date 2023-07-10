@@ -14,6 +14,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
@@ -63,9 +64,15 @@ public class NagaProjectileEntity extends SnowballEntity {
         int i = 1; //
         target.damage(DamageSource.MAGIC, i);
 
-        ((LivingEntityInterface) target).setNagaWaitTicks(30);
+        /*((LivingEntityInterface) target).setNagaWaitTicks(30);
         ((LivingEntityInterface) target).setHitByNaga(true);
-        HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) target).getNagaWaitTicks()));
+        HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) target).getNagaWaitTicks()));*
+        */
+        if(this.getWorld() instanceof ServerWorld){
+            ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleDamageEvent(this.getOwner(), target.getPos());
+        }
+
+
 
         /*while(true){
             if(((LivingEntityInterface) target).getNagaActivation() == true){

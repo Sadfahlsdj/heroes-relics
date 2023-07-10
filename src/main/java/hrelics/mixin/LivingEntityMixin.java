@@ -127,7 +127,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
             }
         }
 
-        if(nagaWaitTicks == 0 && isHitByNaga == true){
+        /*if(nagaWaitTicks == 0 && isHitByNaga == true){
             isHitByNaga = false;
             setNagaActivation(true);
             Vec3d pos = target.getPos();
@@ -147,7 +147,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
                     (entity) -> entity.damage(DamageSource.MAGIC, 20)
             );
             HeroesRelics.LOGGER.info("Finished waiting 30 naga ticks");
-        } //filler comment to let me push
+        } //filler comment to let me push*/
     }
 
 
