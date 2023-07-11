@@ -2,7 +2,10 @@ package hrelics.networking;
 
 import hrelics.HeroesRelics;
 import hrelics.networking.packet.*;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
 public class ModMessages {
@@ -21,7 +24,14 @@ public class ModMessages {
 
     public static final Identifier PAVISEAEGIS = new Identifier(HeroesRelics.MOD_ID, "paviseaegis");
 
+    public static final Identifier NAGAPARTICLE = new Identifier(HeroesRelics.MOD_ID, "nagaparticle");
+    PacketByteBuf buf = PacketByteBufs.create();
+
+
+
+
     public static final Identifier ANCIENTARMORY = new Identifier(HeroesRelics.MOD_ID, "ancientarmory");
+
 
     public static void registerC2SPackets(){
         ServerPlayNetworking.registerGlobalReceiver(ATROCITY, AtrocityC2SPacket::receive);
@@ -33,7 +43,10 @@ public class ModMessages {
         ServerPlayNetworking.registerGlobalReceiver(BEASTFANG, BeastFangC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(PAVISEAEGIS, PaviseAegisC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(ANCIENTARMORY, AncientArmoryC2SPacket::receive);
+        ServerPlayNetworking.registerGlobalReceiver(NAGAPARTICLE, AncientArmoryC2SPacket::receive);
     }
+
+
 
     public static void registerS2CPackets(){
 

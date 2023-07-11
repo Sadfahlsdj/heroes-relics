@@ -32,6 +32,8 @@ public class ModSounds {
 
     //warp
     public static SoundEvent WARP;
+    public static SoundEvent NAGAACTIVATION;
+    public static SoundEvent NAGAHIT;
     public static SoundEvent registerSoundEvent(String name){
         Identifier id = new Identifier(HeroesRelics.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));

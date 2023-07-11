@@ -28,5 +28,17 @@
     "sounds": [
       "hrelics:warp"
     ]
+  },
+  "nagaactivation": {
+    "subtitle": "hrelics.nagaactivation",
+    "sounds": [
+      "hrelics:nagaactivation"
+    ]
+  },
+  "nagahit": {
+    "subtitle": "hrelics.nagahit",
+    "sounds": [
+      "hrelics:nagahit"
+    ]
   }
 }

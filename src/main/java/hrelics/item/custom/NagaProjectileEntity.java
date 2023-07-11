@@ -3,6 +3,7 @@ package hrelics.item.custom;
 import hrelics.HeroesRelics;
 import hrelics.item.ModItems;
 import hrelics.particle.ModParticles;
+import hrelics.sound.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -16,7 +17,9 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -66,6 +69,8 @@ public class NagaProjectileEntity extends SnowballEntity {
 
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
+
+        this.getWorld().playSoundAtBlockCenter(this.getOwner().getBlockPos(), ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
         Entity target = entityHitResult.getEntity();
         int i = 1; //
         target.damage(DamageSource.MAGIC, i);
@@ -78,7 +83,7 @@ public class NagaProjectileEntity extends SnowballEntity {
         */
         if(this.getWorld() instanceof ServerWorld){
             ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleDamageEvent(this.getOwner(), target.getPos());
-            ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleNagaParticles(target, this.getWorld());
+            ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleNagaParticles(target, (ServerPlayerEntity) this.getOwner(), this.getWorld());
 
             //stuff below is my (broken, do not uncomment) attempt at spawning the beam of light particles
             /*World w = this.getWorld();

@@ -37,7 +37,7 @@ public class KeyInputHandler {
             PlayerEntity p = client.player;
             if(combatArt.wasPressed()){
                if(p.getMainHandStack().isOf(ModItems.Areadbhar)){
-                   HeroesRelics.LOGGER.info(String.valueOf(ModConfigs.VOICE_LINES_ON));
+                   //HeroesRelics.LOGGER.info(String.valueOf(ModConfigs.VOICE_LINES_ON));
                    ClientPlayNetworking.send(ATROCITY, PacketByteBufs.create());
                    //this is entirely decoupled from configs, go into ModConfigs and manually change the variable value
                    if(ModConfigs.VOICE_LINES_ON) {

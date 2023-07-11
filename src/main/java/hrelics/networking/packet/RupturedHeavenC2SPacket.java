@@ -15,11 +15,6 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_ATTACK_DAM
 public class RupturedHeavenC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler,
                                PacketByteBuf buf, PacketSender responseSender){
-
-
-
-
-
         if(!player.getAttributeInstance(ReachEntityAttributes.REACH).hasModifier(RupturedHeavenReach) &&
                 !player.getAttributeInstance(ReachEntityAttributes.ATTACK_RANGE).hasModifier(RupturedHeavenAttackRange) &&
                 !player.getAttributeInstance(GENERIC_ATTACK_DAMAGE).hasModifier(RupturedHeavenDamage)) {

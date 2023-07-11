@@ -9,6 +9,8 @@ import hrelics.sound.ModSounds;
 import hrelics.util.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.sound.SoundEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,8 +51,12 @@ public class HeroesRelics implements ModInitializer {
 		ModSounds.RHEAVEN1 = ModSounds.registerSoundEvent("rheaven1");
 		ModSounds.RHEAVEN2 = ModSounds.registerSoundEvent("rheaven2");
 		ModSounds.WARP = ModSounds.registerSoundEvent("warp");
+		ModSounds.NAGAACTIVATION = ModSounds.registerSoundEvent("nagaactivation");
+		ModSounds.NAGAHIT = ModSounds.registerSoundEvent("nagahit");
 
 		ModParticles.registerParticles();
+
+
 
 	}
 }
