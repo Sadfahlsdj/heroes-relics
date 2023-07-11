@@ -2,6 +2,7 @@ package hrelics.item.custom;
 
 import hrelics.HeroesRelics;
 import hrelics.item.ModItems;
+import hrelics.particle.ModParticles;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +11,7 @@ import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
@@ -17,9 +19,13 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.minecraft.entity.damage.DamageSource.*;
 
@@ -72,6 +78,31 @@ public class NagaProjectileEntity extends SnowballEntity {
         */
         if(this.getWorld() instanceof ServerWorld){
             ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleDamageEvent(this.getOwner(), target.getPos());
+            ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleNagaParticles(target, this.getWorld());
+
+            //stuff below is my (broken, do not uncomment) attempt at spawning the beam of light particles
+            /*World w = this.getWorld();
+            int x = target.getBlockPos().getX();
+            int y = target.getBlockPos().getY() + 64;
+            int z = target.getBlockPos().getZ();
+            List<Long> particleList = new ArrayList<Long>();
+            particleList.add(world.getTime() + 30);
+
+            for(Long l : particleList){
+                while(l > world.getTime()){
+                    for(int j = x - 5; j < x + 5; j += 0.5d){
+                        for(int k = z - 5; k < z + 5; k += 0.5d){
+                            w.addParticle(ModParticles.NAGA_PARTICLE, j, y, z, 0, -5d, 0);
+                            //tick(); DONT DO THAT
+                        }
+                    }
+                    l--;
+                }
+                particleList.remove(l);
+            }*/
+
+
+
         }
 
         //below is working but extremely inefficient code that is commented out in order to use birb's code instead

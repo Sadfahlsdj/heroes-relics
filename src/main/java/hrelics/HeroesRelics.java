@@ -4,6 +4,7 @@ import hrelics.configs.ModConfigs;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
+import hrelics.particle.ModParticles;
 import hrelics.sound.ModSounds;
 import hrelics.util.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
@@ -48,6 +49,8 @@ public class HeroesRelics implements ModInitializer {
 		ModSounds.RHEAVEN1 = ModSounds.registerSoundEvent("rheaven1");
 		ModSounds.RHEAVEN2 = ModSounds.registerSoundEvent("rheaven2");
 		ModSounds.WARP = ModSounds.registerSoundEvent("warp");
+
+		ModParticles.registerParticles();
 
 	}
 }
