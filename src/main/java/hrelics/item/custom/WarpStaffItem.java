@@ -32,7 +32,7 @@ public class WarpStaffItem extends Item {
         user.teleport(pos.getX(), pos.getY(), pos.getZ());
         user.getItemCooldownManager().set(this, 60);
 
-        user.damage(DamageSource.OUT_OF_WORLD, 1);
+        //user.damage(DamageSource.OUT_OF_WORLD, 1); porbably not needed
 
         world.playSoundAtBlockCenter(user.getBlockPos(), ModSounds.WARP, SoundCategory.PLAYERS, 0.5f, 1f, true);
 

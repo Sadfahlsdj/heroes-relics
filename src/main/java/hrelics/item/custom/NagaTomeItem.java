@@ -18,8 +18,9 @@ public class NagaTomeItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
+        world.playSoundAtBlockCenter(user.getBlockPos(), ModSounds.NAGAACTIVATION, SoundCategory.PLAYERS, 0.5f, 1f, true);
         if (!world.isClient) {
-            world.playSoundAtBlockCenter(user.getBlockPos(), ModSounds.NAGAACTIVATION, SoundCategory.PLAYERS, 1f, 1f, true);
+
             NagaProjectileEntity nagaEntity = new NagaProjectileEntity(world, user);
             //snowballEntity.setItem(itemStack);
             nagaEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);

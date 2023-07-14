@@ -81,9 +81,15 @@ public class NagaProjectileEntity extends SnowballEntity {
         ((LivingEntityInterface) target).setHitByNaga(true);
         HeroesRelics.LOGGER.info(Integer.toString(((LivingEntityInterface) target).getNagaWaitTicks()));*
         */
-        if(this.getWorld() instanceof ServerWorld){
+        if(this.getWorld() instanceof ServerWorld) {
             ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleDamageEvent(this.getOwner(), target.getPos());
             ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleNagaParticles(target, (ServerPlayerEntity) this.getOwner(), this.getWorld());
+        }
+
+        if(this.getWorld().isClient){
+            this.getWorld().playSoundAtBlockCenter(this.getOwner().getBlockPos(), ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
+
+        }
 
             //stuff below is my (broken, do not uncomment) attempt at spawning the beam of light particles
             /*World w = this.getWorld();
@@ -108,7 +114,7 @@ public class NagaProjectileEntity extends SnowballEntity {
 
 
 
-        }
+
 
         //below is working but extremely inefficient code that is commented out in order to use birb's code instead
 
