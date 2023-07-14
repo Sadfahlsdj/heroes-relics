@@ -79,13 +79,13 @@ public class ServerWorldMixin implements ServerWorldInterface {
                         //w.addParticle(ModParticles.NAGA_PARTICLE, j, y, k, 0, -5d, 0);
                         ((ServerWorldInterface) (ServerWorld) w).nagaParticleHere(p.getRight().getUuid());
                         //networking stuff below
-                        PacketByteBuf buf = PacketByteBufs.create();
-                        buf.writeBlockPos(p.getRight().getBlockPos());
-                        buf.writeInt(j);
-                        buf.writeInt(y);
-                        buf.writeInt(k);
+                        PacketByteBuf NagaParticlePacket = PacketByteBufs.create();
+                        NagaParticlePacket.writeBlockPos(p.getRight().getBlockPos());
+                        NagaParticlePacket.writeInt(j);
+                        NagaParticlePacket.writeInt(y);
+                        NagaParticlePacket.writeInt(k);
 
-                        ServerPlayNetworking.send((ServerPlayerEntity) p.getMiddle(), NAGAPARTICLE, buf);
+                        ServerPlayNetworking.send((ServerPlayerEntity) p.getMiddle(), NAGAPARTICLE, NagaParticlePacket);
                         //HeroesRelics.LOGGER.info("particle goes here");
                         //tick(); DONT DO THAT
                     }

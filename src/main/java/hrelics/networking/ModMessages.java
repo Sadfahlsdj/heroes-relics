@@ -25,7 +25,8 @@ public class ModMessages {
     public static final Identifier PAVISEAEGIS = new Identifier(HeroesRelics.MOD_ID, "paviseaegis");
 
     public static final Identifier NAGAPARTICLE = new Identifier(HeroesRelics.MOD_ID, "nagaparticle");
-    PacketByteBuf buf = PacketByteBufs.create();
+
+    public static final Identifier NAGAHITSOUND = new Identifier(HeroesRelics.MOD_ID, "nagahitsound");
 
 
 
@@ -43,7 +44,7 @@ public class ModMessages {
         ServerPlayNetworking.registerGlobalReceiver(BEASTFANG, BeastFangC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(PAVISEAEGIS, PaviseAegisC2SPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(ANCIENTARMORY, AncientArmoryC2SPacket::receive);
-        ServerPlayNetworking.registerGlobalReceiver(NAGAPARTICLE, AncientArmoryC2SPacket::receive);
+        //ServerPlayNetworking.registerGlobalReceiver(NAGAPARTICLE, AncientArmoryC2SPacket::receive);
     }
 
 

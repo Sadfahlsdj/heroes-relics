@@ -6,12 +6,14 @@ import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
 import hrelics.particle.ModParticles;
 import hrelics.particle.custom.NagaParticle;
+import hrelics.sound.ModSounds;
 import hrelics.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -30,6 +32,7 @@ public class HrelicsClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.NAGA_PARTICLE, NagaParticle.Factory::new);
 
+        //naga particle packet is below
         ClientPlayNetworking.registerGlobalReceiver(ModMessages.NAGAPARTICLE, ((client, handler, buf, responseSender) -> {
             BlockPos target = buf.readBlockPos();
             int x = buf.readInt();
@@ -43,5 +46,15 @@ public class HrelicsClient implements ClientModInitializer {
             });
         }));
 
+        //naga hit sound packet is below
+        ClientPlayNetworking.registerGlobalReceiver(ModMessages.NAGAHITSOUND, ((client, handler, buf, responseSender) -> {
+            BlockPos soundLocation = buf.readBlockPos();
+
+            client.execute(() -> {
+
+                client.world.playSoundAtBlockCenter(soundLocation, ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
+                //HeroesRelics.LOGGER.info("naga hit sound goes here");
+            });
+        }));
     }
 }

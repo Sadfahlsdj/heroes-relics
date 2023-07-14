@@ -4,6 +4,8 @@ import hrelics.HeroesRelics;
 import hrelics.item.ModItems;
 import hrelics.particle.ModParticles;
 import hrelics.sound.ModSounds;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -14,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -30,6 +33,8 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import static hrelics.networking.ModMessages.NAGAHITSOUND;
+import static hrelics.networking.ModMessages.NAGAPARTICLE;
 import static net.minecraft.entity.damage.DamageSource.*;
 
 public class NagaProjectileEntity extends SnowballEntity {
@@ -74,7 +79,11 @@ public class NagaProjectileEntity extends SnowballEntity {
         Entity target = entityHitResult.getEntity();
         int i = 1; //
         target.damage(DamageSource.MAGIC, i);
+        //networking for sound is below
+        PacketByteBuf NagaHitSoundPacket = PacketByteBufs.create();
+        NagaHitSoundPacket.writeBlockPos(this.getOwner().getBlockPos());
 
+        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), NAGAHITSOUND, NagaHitSoundPacket);
         //below is part of working but extremely inefficient code that is commented out in order to use birb's code instead
 
         /*((LivingEntityInterface) target).setNagaWaitTicks(30);
@@ -86,10 +95,7 @@ public class NagaProjectileEntity extends SnowballEntity {
             ((ServerWorldInterface) (ServerWorld) this.getWorld()).scheduleNagaParticles(target, (ServerPlayerEntity) this.getOwner(), this.getWorld());
         }
 
-        if(this.getWorld().isClient){
-            this.getWorld().playSoundAtBlockCenter(this.getOwner().getBlockPos(), ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
 
-        }
 
             //stuff below is my (broken, do not uncomment) attempt at spawning the beam of light particles
             /*World w = this.getWorld();
