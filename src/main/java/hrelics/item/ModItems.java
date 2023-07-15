@@ -62,6 +62,8 @@ public class ModItems {
     public static final Item RescueStaff = registerItem("rescuestaff", new RescueStaffItem(new FabricItemSettings()));
 
     public static final Item NagaTome = registerItem("nagatome", new NagaTomeItem(new FabricItemSettings()));
+
+    public static final Item Forseti = registerItem("forseti", new ForsetiItem(new FabricItemSettings()));
     public static final EntityType<NagaProjectileEntity> NagaProjectileEntity = FabricEntityTypeBuilder.<NagaProjectileEntity>create(
                     SpawnGroup.MISC, NagaProjectileEntity::new)
             .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
@@ -111,6 +113,7 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, WarpStaff);
         addToItemGroup(ModItemGroup.RELICITEMS, RescueStaff);
         addToItemGroup(ModItemGroup.RELICITEMS, NagaTome);
+        addToItemGroup(ModItemGroup.RELICITEMS, Forseti);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){
