@@ -1,10 +1,6 @@
 package hrelics.mixin;
 
-import hrelics.HeroesRelics;
 import hrelics.item.custom.ServerWorldInterface;
-import hrelics.networking.ModMessages;
-import hrelics.particle.ModParticles;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
@@ -16,10 +12,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.MutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
-import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,17 +22,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.UUID;
 import java.util.function.BooleanSupplier;
 
-import static hrelics.networking.ModMessages.ATROCITY;
 import static hrelics.networking.ModMessages.NAGAPARTICLE;
 
 @Mixin(ServerWorld.class)
 public class ServerWorldMixin implements ServerWorldInterface {
 
     public final Queue<Triple<Long, Vec3d, Entity>> nagaTomeQueue = new PriorityQueue<>();
-    public final ArrayList<MutableTriple<Long, ServerPlayerEntity, Entity>> particleList = new ArrayList<>();
+    public final ArrayList<MutableTriple<Long, ServerPlayerEntity, Entity>> nagaParticleList = new ArrayList<>();
+
+
 
 
     public void scheduleDamageEvent(Entity attacker, Vec3d pos){
@@ -48,8 +42,10 @@ public class ServerWorldMixin implements ServerWorldInterface {
 
     public void scheduleNagaParticles(Entity target, ServerPlayerEntity player, World world){
         //update the 30 to another value to change delay before attack
-        particleList.add(MutableTriple.of(world.getTime() + 30L, player, target));
+        nagaParticleList.add(MutableTriple.of(world.getTime() + 30L, player, target));
     }
+
+
 
 
 
@@ -69,7 +65,7 @@ public class ServerWorldMixin implements ServerWorldInterface {
         }
 
         //particles
-        for(MutableTriple<Long, ServerPlayerEntity, Entity> p : particleList){
+        for(MutableTriple<Long, ServerPlayerEntity, Entity> p : nagaParticleList){
             if(p.getLeft() > w.getTime()){
                 int x = p.getRight().getBlockPos().getX();
                 int y = p.getRight().getBlockPos().getY() + 32;

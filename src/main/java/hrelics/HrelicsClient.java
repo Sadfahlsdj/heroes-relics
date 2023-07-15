@@ -5,6 +5,7 @@ import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.networking.ModMessages;
 import hrelics.particle.ModParticles;
+import hrelics.particle.custom.ForsetiParticle;
 import hrelics.particle.custom.NagaParticle;
 import hrelics.sound.ModSounds;
 import hrelics.util.ModModelPredicateProvider;
@@ -31,6 +32,7 @@ public class HrelicsClient implements ClientModInitializer {
         ModModelPredicateProvider.registerModModels();
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.NAGA_PARTICLE, NagaParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.FORSETI_PARTICLE, ForsetiParticle.Factory::new);
 
         //naga particle packet is below
         ClientPlayNetworking.registerGlobalReceiver(ModMessages.NAGAPARTICLE, ((client, handler, buf, responseSender) -> {
@@ -54,6 +56,20 @@ public class HrelicsClient implements ClientModInitializer {
 
                 client.world.playSoundAtBlockCenter(soundLocation, ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
                 //HeroesRelics.LOGGER.info("naga hit sound goes here");
+            });
+        }));
+
+        //forseti particle packet is below
+        ClientPlayNetworking.registerGlobalReceiver(ModMessages.FORSETIPARTICLE, ((client, handler, buf, responseSender) -> {
+            double x = buf.readDouble();
+            double y = buf.readDouble();
+            double z = buf.readDouble();
+            double xV = buf.readDouble();
+            double zV = buf.readDouble();
+
+            client.execute(() -> {
+                client.world.addParticle(ModParticles.FORSETI_PARTICLE, true, x, y, z, xV, 0, zV);
+                //HeroesRelics.LOGGER.info("forseti particle goes here");
             });
         }));
     }

@@ -28,6 +28,8 @@ public class ModMessages {
 
     public static final Identifier NAGAHITSOUND = new Identifier(HeroesRelics.MOD_ID, "nagahitsound");
 
+    public static final Identifier FORSETIPARTICLE = new Identifier(HeroesRelics.MOD_ID, "forsetiparticle");
+
 
 
 
