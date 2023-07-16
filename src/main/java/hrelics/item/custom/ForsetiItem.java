@@ -57,14 +57,24 @@ public class ForsetiItem extends Item {
                 a.damage(DamageSource.MAGIC, 4);
             }
         }
-
+        //networking stuff & mathemagics for particle spawning
         PacketByteBuf ForsetiParticlePacket = PacketByteBufs.create();
+        //WOOOOOO I LOVE MATH
         Random random = new Random();
         int coordModifier = random.nextInt(-5, 5);
         int velocityModifier = Math.abs(coordModifier);
-        double x = user.getPos().add(user.getRotationVector().multiply((double) coordModifier)).getX();
+        Vec3d particleSpawningVector = user.getRotationVector();
+        double xTemp = user.getRotationVector().x;
+        double zTemp = user.getRotationVector().z;
+        particleSpawningVector.subtract(particleSpawningVector.x, particleSpawningVector.y, particleSpawningVector.z);
+        particleSpawningVector.normalize();
+        particleSpawningVector.add(zTemp, 0, -1 * xTemp);
+
+        //double x = user.getPos().add(user.getRotationVector().multiply((double) coordModifier)).getX();
+        double x = user.getPos().add(particleSpawningVector.multiply((double) coordModifier)).getX();
         double y = user.getPos().getY();
-        double z = user.getPos().add(user.getRotationVector().multiply((double) coordModifier)).getZ();
+        //double z = user.getPos().add(user.getRotationVector().multiply((double) coordModifier)).getZ();
+        double z = user.getPos().add(particleSpawningVector.multiply((double) coordModifier)).getZ();
         double xV = user.getRotationVector().multiply((double) (velocityModifier)).getX();
         double zV = user.getRotationVector().multiply((double) (velocityModifier)).getZ(); //xV znd zV are x velocity and z velocity respectively
 
