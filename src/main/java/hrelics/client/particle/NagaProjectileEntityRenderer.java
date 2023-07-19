@@ -32,6 +32,7 @@ public class NagaProjectileEntityRenderer extends EntityRenderer<NagaProjectileE
         Vec3d v = entity.getPos();
 
         //logic to rotate the projectile goes here probably
+        //matrices.multiply(Direction.fromHorizontal(0).getRotationQuaternion());
 
         MinecraftClient.getInstance().getItemRenderer().renderItem(
                 STACK, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0
