@@ -3,6 +3,7 @@ package hrelics;
 import hrelics.configs.ModConfigs;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
+import hrelics.item.custom.NagaProjectileEntity;
 import hrelics.networking.ModMessages;
 import hrelics.particle.ModParticles;
 import hrelics.sound.ModSounds;
@@ -10,8 +11,15 @@ import hrelics.util.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +30,14 @@ public class HeroesRelics implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("heroes-relics");
 
 	public static final String MOD_ID = "hrelics";
+
+	/*public static final EntityType<NagaProjectileEntity> NagaProjectileEntityType = Registry.register(
+			Registries.ENTITY_TYPE,
+			new Identifier(MOD_ID, "nagaprojectileentitytype"),
+			FabricEntityTypeBuilder.<NagaProjectileEntity>create(SpawnGroup.MISC, NagaProjectileEntity::new)
+					.dimensions(EntityDimensions.fixed(0.25F, 0.25F)) // dimensions in Minecraft units of the projectile
+					.trackRangeBlocks(4).trackedUpdateRate(10) // necessary for all thrown projectiles (as it prevents it from breaking, lol)
+					.build()); // VERY IMPORTANT DONT DELETE FOR THE LOVE OF GOD PSLSSSSSS*/
 
 	@Override
 	public void onInitialize() {

@@ -12,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
+import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -37,19 +38,22 @@ import static hrelics.networking.ModMessages.NAGAHITSOUND;
 import static hrelics.networking.ModMessages.NAGAPARTICLE;
 import static net.minecraft.entity.damage.DamageSource.*;
 
-public class NagaProjectileEntity extends SnowballEntity {
+public class NagaProjectileEntity extends ThrownItemEntity {
 
 
-    public NagaProjectileEntity(EntityType<? extends SnowballEntity> entityType, World world) {
+    public NagaProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+
         super(entityType, world);
     }
 
     public NagaProjectileEntity(World world, LivingEntity owner) {
-        super(world, owner);
+
+        super(ModItems.NagaProjectileEntityType, owner, world);
     }
 
     public NagaProjectileEntity(World world, double x, double y, double z) {
-        super(world, x, y, z);
+
+        super(ModItems.NagaProjectileEntityType, x, y, z, world);
     }
 
     protected Item getDefaultItem() {
@@ -58,7 +62,7 @@ public class NagaProjectileEntity extends SnowballEntity {
 
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return (ParticleEffect)(itemStack.isEmpty() ? ModParticles.NAGA_PARTICLE : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 
     public void handleStatus(byte status) {
@@ -75,7 +79,7 @@ public class NagaProjectileEntity extends SnowballEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
 
-        this.getWorld().playSoundAtBlockCenter(this.getOwner().getBlockPos(), ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
+        //this.getWorld().playSoundAtBlockCenter(this.getOwner().getBlockPos(), ModSounds.NAGAHIT, SoundCategory.PLAYERS, 1f, 1f, true);
         Entity target = entityHitResult.getEntity();
         int i = 1; //
         target.damage(DamageSource.MAGIC, i);
@@ -83,7 +87,10 @@ public class NagaProjectileEntity extends SnowballEntity {
         PacketByteBuf NagaHitSoundPacket = PacketByteBufs.create();
         NagaHitSoundPacket.writeBlockPos(this.getOwner().getBlockPos());
 
-        ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), NAGAHITSOUND, NagaHitSoundPacket);
+        if(this.getWorld() instanceof ServerWorld){
+            ServerPlayNetworking.send((ServerPlayerEntity) this.getOwner(), NAGAHITSOUND, NagaHitSoundPacket);
+        }
+
         //below is part of working but extremely inefficient code that is commented out in order to use birb's code instead
 
         /*((LivingEntityInterface) target).setNagaWaitTicks(30);

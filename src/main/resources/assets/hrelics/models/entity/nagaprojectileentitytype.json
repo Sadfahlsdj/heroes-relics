@@ -1,0 +1,20 @@
+{
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "en:nagaprojectileentity",
+      "materials": {
+        "default": "snowball"
+      },
+      "textures": {
+        "default": "textures/entity/snowball"
+      },
+      "geometry": {
+        "default": "geometry.snowball"
+      },
+      "animations": {
+        "move": "animation.snowball.move"
+      },
+      "render_controllers": ["controller.render.snowball"]
+    }
+  }
+}

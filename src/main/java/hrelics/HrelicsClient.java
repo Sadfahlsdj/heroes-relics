@@ -1,8 +1,10 @@
 package hrelics;
 
+import hrelics.client.particle.NagaProjectileEntityRenderer;
 import hrelics.event.KeyInputHandler;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
+import hrelics.item.custom.NagaProjectileEntity;
 import hrelics.networking.ModMessages;
 import hrelics.particle.ModParticles;
 import hrelics.particle.custom.ForsetiParticle;
@@ -12,8 +14,10 @@ import hrelics.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,7 +27,10 @@ public class HrelicsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
-
+        EntityRendererRegistry.register(ModItems.NagaProjectileEntityType, (context) ->
+                new NagaProjectileEntityRenderer(context));
+        /*EntityRendererRegistry.register(ModItems.NagaProjectileEntityType, (context) ->
+                new FlyingItemEntityRenderer(context));*/
 
 
         ModMessages.registerS2CPackets();
