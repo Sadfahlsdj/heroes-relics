@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.Vec2f;
@@ -29,10 +30,12 @@ public class NagaProjectileEntityRenderer extends EntityRenderer<NagaProjectileE
     @Override
     public void render(NagaProjectileEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light){
         matrices.push();
-        Vec3d v = entity.getPos();
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(entity.age));
 
-        //logic to rotate the projectile goes here probably
+        //logic to rotate the projectile goes here probably - commented shit is testing
         //matrices.multiply(Direction.fromHorizontal(0).getRotationQuaternion());
+        //Quaternionf q = new Quaternionf(entity.age % 20, 0, 0, 0);
+        //matrices.multiply(q);
 
         MinecraftClient.getInstance().getItemRenderer().renderItem(
                 STACK, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0
