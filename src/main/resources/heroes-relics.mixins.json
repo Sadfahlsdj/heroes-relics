@@ -7,7 +7,8 @@
 		"PlayerEntityMixin",
 		"LivingEntityMixin",
 		"PersistentProjectileEntityMixin",
-		"ServerWorldMixin"
+		"ServerWorldMixin",
+		"ThrownItemEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

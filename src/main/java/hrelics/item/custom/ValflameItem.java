@@ -57,6 +57,7 @@ public class ValflameItem extends Item {
         if (!world.isClient && user instanceof PlayerEntity) {
 
             ValflameProjectileEntity valEntity = new ValflameProjectileEntity(world, user);
+            ((ThrownItemEntityInterface) valEntity).setValflameUseTime(useTime);
             //snowballEntity.setItem(itemStack);
             valEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
             valEntity.setNoGravity(true);
