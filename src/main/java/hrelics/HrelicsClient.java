@@ -1,6 +1,7 @@
 package hrelics;
 
 import hrelics.client.particle.NagaProjectileEntityRenderer;
+import hrelics.client.particle.ValflameProjectileEntityRenderer;
 import hrelics.event.KeyInputHandler;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
@@ -29,8 +30,8 @@ public class HrelicsClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModItems.NagaProjectileEntityType, (context) ->
                 new NagaProjectileEntityRenderer(context));
-        /*EntityRendererRegistry.register(ModItems.NagaProjectileEntityType, (context) ->
-                new FlyingItemEntityRenderer(context));*/
+        EntityRendererRegistry.register(ModItems.ValflameProjectileEntityType, (context) ->
+                new ValflameProjectileEntityRenderer(context));
 
 
         ModMessages.registerS2CPackets();

@@ -64,14 +64,24 @@ public class ModItems {
     public static final Item NagaTome = registerItem("nagatome", new NagaTomeItem(new FabricItemSettings()));
 
     public static final Item Forseti = registerItem("forseti", new ForsetiItem(new FabricItemSettings()));
+
+    public static final Item Valflame = registerItem("valflame", new ValflameItem(new FabricItemSettings()));
     public static final EntityType<NagaProjectileEntity> NagaProjectileEntity = FabricEntityTypeBuilder.<NagaProjectileEntity>create(
                     SpawnGroup.MISC, NagaProjectileEntity::new)
             .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
             .trackRangeBlocks(32).trackedUpdateRate(20)
             .build(); //what the fuck
+
+    public static final EntityType<ValflameProjectileEntity> ValflameProjectileEntity = FabricEntityTypeBuilder.<ValflameProjectileEntity>create(
+                    SpawnGroup.MISC, ValflameProjectileEntity::new)
+            .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
+            .trackRangeBlocks(32).trackedUpdateRate(20)
+            .build(); //what the fuck
     public static final Item NagaProjectileItem = registerItem("nagaprojectileitem", new NagaProjectileItem(new FabricItemSettings()));
+    public static final Item ValflameProjectileItem = registerItem("valflameprojectileitem", new ValflameProjectileItem(new FabricItemSettings()));
 
     public static final EntityType NagaProjectileEntityType = registerEntity("nagaprojectileentitytype", NagaProjectileEntity);
+    public static final EntityType ValflameProjectileEntityType = registerEntity("valflameprojectileentitytype", ValflameProjectileEntity);
 
 
     //important
@@ -108,12 +118,14 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, GalateaBlood);
         addToItemGroup(ModItemGroup.RELICITEMS, CharonBlood);
         addToItemGroup(ModItemGroup.RELICITEMS, AncientBlood);
-
+        //dont worry about this one
         addToItemGroup(ModItemGroup.RELICITEMS, AncientArmory);
+        //staves & spelltomes
         addToItemGroup(ModItemGroup.RELICITEMS, WarpStaff);
         addToItemGroup(ModItemGroup.RELICITEMS, RescueStaff);
         addToItemGroup(ModItemGroup.RELICITEMS, NagaTome);
         addToItemGroup(ModItemGroup.RELICITEMS, Forseti);
+        addToItemGroup(ModItemGroup.RELICITEMS, Valflame);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){
