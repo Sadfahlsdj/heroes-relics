@@ -92,4 +92,17 @@ public interface PlayerEntityInterface {
 
     }
 
+
+    int valflameSelfDamageTicks = 0;
+    public default int getValflameTicks(){
+        return valflameSelfDamageTicks;
+    }
+    public default void setValflameTicks(int a){
+
+    }
+
+    public default void incrementValflameTicks(){
+
+    }
+
 }

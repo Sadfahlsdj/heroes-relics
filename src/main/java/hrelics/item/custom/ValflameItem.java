@@ -41,7 +41,10 @@ public class ValflameItem extends Item {
     }
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        //charge up projectile
+        //increment valflame ticks, which will damage user if have been holding for >5 seconds
+        if(user instanceof PlayerEntity){
+            ((PlayerEntityInterface) user).incrementValflameTicks();
+        }
     }
 
     @Override
@@ -55,11 +58,12 @@ public class ValflameItem extends Item {
 
         int useTime = (200 - remainingUseTicks) / 20; //in seconds
         if (!world.isClient && user instanceof PlayerEntity) {
+            ((PlayerEntityInterface) user).setValflameTicks(0);
 
             ValflameProjectileEntity valEntity = new ValflameProjectileEntity(world, user);
             ((ThrownItemEntityInterface) valEntity).setValflameUseTime(useTime);
             //snowballEntity.setItem(itemStack);
-            valEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
+            valEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, (1.5F + (float)useTime / 3.0F), 1.0F);
             valEntity.setNoGravity(true);
             world.spawnEntity(valEntity);
 

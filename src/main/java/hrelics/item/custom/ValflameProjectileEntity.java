@@ -42,7 +42,13 @@ public class ValflameProjectileEntity extends ThrownItemEntity {
         super.onCollision(hitResult);
         if (!this.world.isClient) {
             int power = ((ThrownItemEntityInterface) this).getValflameUseTime();
-            this.world.createExplosion(this.getOwner(), hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 5 + 2 * power, false, World.ExplosionSourceType.MOB);
+            if(power <= 5){
+                this.world.createExplosion(this.getOwner(), hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, (float)(1 + 0.5 * power), false, World.ExplosionSourceType.MOB);
+            }
+            else{
+                this.world.createExplosion(this.getOwner(), hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, (float)(3.5 + (power - 5)), false, World.ExplosionSourceType.MOB);
+
+            }
             this.world.sendEntityStatus(this, (byte)3);
             this.discard();
         }

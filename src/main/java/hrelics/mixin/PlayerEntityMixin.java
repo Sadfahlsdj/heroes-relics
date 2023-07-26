@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.BlazeEntity;
@@ -112,6 +113,19 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         witherHits--;
     }
 
+    @Unique
+    int valflameSelfDamageTicks = 0;
+    public int getValflameTicks(){
+        return valflameSelfDamageTicks;
+    }
+    public void setValflameTicks(int a){
+        valflameSelfDamageTicks = a;
+    }
+
+    public void incrementValflameTicks(){
+        valflameSelfDamageTicks++;
+    }
+
 
     Entity t;
     PlayerEntity user = (PlayerEntity) (Object) this;
@@ -204,6 +218,11 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         }
         if(PaviseAegisTicks > 0){
             PaviseAegisTicks--;
+        }
+
+        //valflame self damage
+        if(valflameSelfDamageTicks > 100 && valflameSelfDamageTicks % 20 == 0){
+            user.damage(DamageSource.OUT_OF_WORLD, 1);
         }
     }
 }
