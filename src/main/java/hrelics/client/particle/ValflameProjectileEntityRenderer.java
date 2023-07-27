@@ -26,7 +26,7 @@ public class ValflameProjectileEntityRenderer extends EntityRenderer<ValflamePro
     public void render(ValflameProjectileEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light){
         matrices.push();
         //rotates da projectile
-        //matrices.multiply(RotationAxis.POSITIVE_Y.rotation(entity.age));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(entity.age));
 
         MinecraftClient.getInstance().getItemRenderer().renderItem(
                 STACK, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 0
