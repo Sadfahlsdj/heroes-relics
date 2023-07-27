@@ -10,6 +10,8 @@ import hrelics.networking.ModMessages;
 import hrelics.particle.ModParticles;
 import hrelics.particle.custom.ForsetiParticle;
 import hrelics.particle.custom.NagaParticle;
+import hrelics.particle.custom.ValflameStrongParticle;
+import hrelics.particle.custom.ValflameWeakParticle;
 import hrelics.sound.ModSounds;
 import hrelics.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -41,6 +43,8 @@ public class HrelicsClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.NAGA_PARTICLE, NagaParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.FORSETI_PARTICLE, ForsetiParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.VALFLAME_STRONG_PARTICLE, ValflameStrongParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.VALFLAME_WEAK_PARTICLE, ValflameWeakParticle.Factory::new);
 
         //naga particle packet is below
         ClientPlayNetworking.registerGlobalReceiver(ModMessages.NAGAPARTICLE, ((client, handler, buf, responseSender) -> {
@@ -80,5 +84,23 @@ public class HrelicsClient implements ClientModInitializer {
                 //HeroesRelics.LOGGER.info("forseti particle goes here");
             });
         }));
+
+        ClientPlayNetworking.registerGlobalReceiver(ModMessages.VALFLAMEPARTICLE, ((client, handler, buf, responseSender) -> {
+            double x = buf.readDouble();
+            double y = buf.readDouble();
+            double z = buf.readDouble();
+            boolean strong = buf.readBoolean();
+
+            client.execute(() -> {
+                if(strong){
+                    client.world.addParticle(ModParticles.VALFLAME_STRONG_PARTICLE, true, x, y, z, 0, 30, 0);
+                }
+                else{
+                    client.world.addParticle(ModParticles.VALFLAME_WEAK_PARTICLE, true, x, y, z, 0, 30, 0);
+                }
+            });
+        }));
     }
+
+
 }

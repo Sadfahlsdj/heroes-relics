@@ -50,6 +50,7 @@ public class HeroesRelics implements ModInitializer {
 		//LOGGER.info("Hello Fabric world!");
 		ModMessages.registerC2SPackets();
 		ModLootTableModifiers.modifyLootTables();
+		ModParticles.registerParticles();
 
 		//sounds
 		ModSounds.ATROCITY1 = ModSounds.registerSoundEvent("atrocity1");
@@ -70,7 +71,7 @@ public class HeroesRelics implements ModInitializer {
 		ModSounds.NAGAACTIVATION = ModSounds.registerSoundEvent("nagaactivation");
 		ModSounds.NAGAHIT = ModSounds.registerSoundEvent("nagahit");
 
-		ModParticles.registerParticles();
+
 
 
 

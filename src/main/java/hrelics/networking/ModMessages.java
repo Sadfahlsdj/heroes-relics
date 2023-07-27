@@ -30,7 +30,8 @@ public class ModMessages {
 
     public static final Identifier FORSETIPARTICLE = new Identifier(HeroesRelics.MOD_ID, "forsetiparticle");
 
-    public static final Identifier VALFLAMEPARTICLE = new Identifier(HeroesRelics.MOD_ID, "forsetiparticle");
+    public static final Identifier VALFLAMEPARTICLE = new Identifier(HeroesRelics.MOD_ID, "valflameparticle");
+
 
 
     public static final Identifier ANCIENTARMORY = new Identifier(HeroesRelics.MOD_ID, "ancientarmory");

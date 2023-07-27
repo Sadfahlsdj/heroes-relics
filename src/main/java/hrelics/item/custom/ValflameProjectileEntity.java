@@ -57,7 +57,7 @@ public class ValflameProjectileEntity extends ThrownItemEntity {
 
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ModParticles.VALFLAME_PARTICLE : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return (ParticleEffect)(itemStack.isEmpty() ? ModParticles.VALFLAME_WEAK_PARTICLE : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 
     public void handleStatus(byte status) {

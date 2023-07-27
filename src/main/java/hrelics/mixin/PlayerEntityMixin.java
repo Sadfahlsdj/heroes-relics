@@ -3,6 +3,8 @@ package hrelics.mixin;
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import hrelics.item.ModItems;
 import hrelics.item.custom.PlayerEntityInterface;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -16,12 +18,20 @@ import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Random;
+
+import static hrelics.networking.ModMessages.NAGAPARTICLE;
+import static hrelics.networking.ModMessages.VALFLAMEPARTICLE;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements PlayerEntityInterface {
@@ -223,6 +233,31 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         //valflame self damage
         if(valflameSelfDamageTicks > 100 && valflameSelfDamageTicks % 20 == 0){
             user.damage(DamageSource.OUT_OF_WORLD, 1);
+        }
+
+        //valflame particles
+        if(valflameSelfDamageTicks > 0){
+            int x = user.getBlockPos().getX();
+            int y = user.getBlockPos().getY();
+            int z = user.getBlockPos().getZ();
+            Random random = new Random();
+            double d = 2 * random.nextDouble(-1, 1);
+
+            PacketByteBuf ValflameParticlePacket = PacketByteBufs.create();
+            ValflameParticlePacket.writeDouble(x + d);
+            ValflameParticlePacket.writeDouble(y);
+            ValflameParticlePacket.writeDouble(z + d);
+            if(valflameSelfDamageTicks > 100){
+                ValflameParticlePacket.writeBoolean(true);
+            }
+            else{
+                ValflameParticlePacket.writeBoolean(false);
+            }
+
+            if(user.getWorld() instanceof ServerWorld){
+                ServerPlayNetworking.send((ServerPlayerEntity) user, VALFLAMEPARTICLE, ValflameParticlePacket);
+            }
+
         }
     }
 }
