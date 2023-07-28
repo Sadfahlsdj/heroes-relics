@@ -7,6 +7,7 @@ import hrelics.item.ModToolMaterials;
 import hrelics.item.custom.LivingEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -26,6 +27,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
+import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_ATTACK_DAMAGE;
+
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin implements LivingEntityInterface {
@@ -33,6 +36,9 @@ public class LivingEntityMixin implements LivingEntityInterface {
     DamageSource source;
     LivingEntity target = (LivingEntity) (Object) this;
     LivingEntity user = (LivingEntity) (Object) this;
+
+    EntityAttributeModifier tyrfingDamage = new EntityAttributeModifier("tyrfingdamage",
+            1.5, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
     @Inject(method = "damage", at = @At("HEAD"))
     protected void getSource(DamageSource source, float f, CallbackInfoReturnable cir){
         this.source = source;
@@ -55,6 +61,18 @@ public class LivingEntityMixin implements LivingEntityInterface {
        if(target instanceof PlayerEntity && target.getOffHandStack().isOf(ModItems.AegisShield)){
            //aegis shield passive DR
            f -= 1;
+       }
+
+       if(target instanceof PlayerEntity && tyrfingTicks > 0 && !source.isOutOfWorld()){
+           f = 0;
+           target.heal(3);
+
+           //attribute for damage increase
+
+           target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).removeModifier(tyrfingDamage);
+           target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).addTemporaryModifier(tyrfingDamage);
+           target.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 60, 0), target);
+           setTyrfingDamageTicks(100);
        }
        //testing
        //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
@@ -102,6 +120,15 @@ public class LivingEntityMixin implements LivingEntityInterface {
         }
         if(nagaWaitTicks > 0){
             nagaWaitTicks--;
+        }
+        if (tyrfingTicks > 0) {
+            tyrfingTicks--;
+        }
+        if (tyrfingDamageTicks > 0) {
+            tyrfingDamageTicks--;
+        }
+        if(tyrfingDamageTicks == 0 && target instanceof PlayerEntity){
+            target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).removeModifier(tyrfingDamage);
         }
         Item mainHandItem = user.getMainHandStack().getItem();
         if(mainHandItem instanceof ToolItem) {
@@ -162,6 +189,9 @@ public class LivingEntityMixin implements LivingEntityInterface {
     public boolean isHitByNaga = false;
 
     public boolean nagaActivation = false;
+
+    public int tyrfingTicks;
+    public int tyrfingDamageTicks;
     public void setBoostedFireTicks(int i){
         boostedFireTicks = i;
 
@@ -193,5 +223,12 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
     public boolean getNagaActivation(){
         return nagaActivation;
+    }
+
+    public void setTyrfingTicks(int i){
+        tyrfingTicks = i;
+    }
+    public void setTyrfingDamageTicks(int i){
+        tyrfingDamageTicks = i;
     }
 }

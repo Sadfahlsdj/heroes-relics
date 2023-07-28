@@ -3,6 +3,10 @@ package hrelics.item.custom;
 public interface LivingEntityInterface {
 
     int nagaWaitTicks = 0;
+
+    int tyrfingTicks = 0;
+
+    int tyrfingDamageTicks = 0;
     boolean isHitByNaga = false;
 
     public boolean nagaActivation = false;
@@ -33,5 +37,13 @@ public interface LivingEntityInterface {
 
     public default boolean getHitByNaga(){ //filler comment to let me push
         return isHitByNaga;
+    }
+
+    public default void setTyrfingTicks(int i){
+
+    }
+
+    public default void setTyrfingDamageTicks(int i){
+
     }
 }

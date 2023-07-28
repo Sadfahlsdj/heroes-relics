@@ -57,7 +57,9 @@ public class ModItems {
     public static final Item GalateaBlood = registerItem("galateablood", new BloodItem(new FabricItemSettings()));
     public static final Item CharonBlood = registerItem("charonblood", new BloodItem(new FabricItemSettings()));
 
-    //staves (not as wip anymore actually)
+    //staves, tomes, & tyrfing
+    public static final Item Tyrfing = registerItem("tyrfing", new TyrfingItem(ModToolMaterials.UMBRAL_STEEL,
+            6, -2.4f, new FabricItemSettings().maxDamage(0)));
     public static final Item WarpStaff = registerItem("warpstaff", new WarpStaffItem(new FabricItemSettings()));
     public static final Item RescueStaff = registerItem("rescuestaff", new RescueStaffItem(new FabricItemSettings()));
 
@@ -126,6 +128,8 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, NagaTome);
         addToItemGroup(ModItemGroup.RELICITEMS, Forseti);
         addToItemGroup(ModItemGroup.RELICITEMS, Valflame);
+        //tyrfing
+        addToItemGroup(ModItemGroup.RELICITEMS, Tyrfing);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){
