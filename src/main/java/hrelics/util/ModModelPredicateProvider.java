@@ -2,10 +2,13 @@ package hrelics.util;
 
 import com.google.common.collect.Maps;
 import hrelics.item.ModItems;
+import hrelics.item.custom.LivingEntityInterface;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.item.ClampedModelPredicateProvider;
 import net.minecraft.client.item.ModelPredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
@@ -19,6 +22,10 @@ public class ModModelPredicateProvider {
         //aegis shield
         ModelPredicateProviderRegistry.register(ModItems.AegisShield, new Identifier("blocking"), (stack, world, entity, seed) -> {
             return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
+        });
+        //tyrfing - currently not working
+        ModelPredicateProviderRegistry.register(ModItems.Tyrfing, new Identifier("parried"), (stack, world, entity, seed) -> {
+            return entity != null && ((LivingEntityInterface) entity).getTyrfingDamageTicks() > 0 ? 1.0F : 0.0F;
         });
     }
 

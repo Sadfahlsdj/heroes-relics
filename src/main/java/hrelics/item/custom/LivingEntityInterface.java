@@ -46,4 +46,7 @@ public interface LivingEntityInterface {
     public default void setTyrfingDamageTicks(int i){
 
     }
+    public default int getTyrfingDamageTicks(){
+        return tyrfingDamageTicks;
+    }
 }

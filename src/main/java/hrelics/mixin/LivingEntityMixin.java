@@ -231,4 +231,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
     public void setTyrfingDamageTicks(int i){
         tyrfingDamageTicks = i;
     }
+    public int getTyrfingDamageTicks(){
+        return tyrfingDamageTicks;
+    }
 }
