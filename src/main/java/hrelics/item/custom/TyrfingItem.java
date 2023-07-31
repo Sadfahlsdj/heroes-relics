@@ -1,6 +1,7 @@
 package hrelics.item.custom;
 
 import hrelics.sound.ModSounds;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -30,5 +31,11 @@ public class TyrfingItem extends SwordItem {
             user.damage(DamageSource.OUT_OF_WORLD, 3);
         }
         return TypedActionResult.success(itemStack, world.isClient());
+    }
+
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
+        ((LivingEntityInterface) attacker).decrementTyrfingHits();
+        return super.postHit(stack, target, attacker);
     }
 }

@@ -100,9 +100,25 @@ public interface PlayerEntityInterface {
     public default void setValflameTicks(int a){
 
     }
+    int tyrfingDamageTicks = 0;
 
+    boolean tyrfingAwakened = false;
     public default void incrementValflameTicks(){
 
+    }
+
+    public default void setTyrfingDamageTicks(int i){
+
+    }
+    public default int getTyrfingDamageTicks(){
+        return tyrfingDamageTicks;
+    }
+
+    public default void setTyrfingAwakened(boolean b){
+
+    }
+    public default boolean getTyrfingAwakened(){
+        return tyrfingAwakened;
     }
 
 }

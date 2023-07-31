@@ -1,7 +1,9 @@
 package hrelics.mixin;
 
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import hrelics.HeroesRelics;
 import hrelics.item.ModItems;
+import hrelics.item.custom.LivingEntityInterface;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -125,6 +127,10 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
 
     @Unique
     int valflameSelfDamageTicks = 0;
+
+    int tyrfingDamageTicks = 0;
+
+    boolean tyrfingAwakened = false;
     public int getValflameTicks(){
         return valflameSelfDamageTicks;
     }
@@ -134,6 +140,20 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
 
     public void incrementValflameTicks(){
         valflameSelfDamageTicks++;
+    }
+
+    public void setTyrfingDamageTicks(int i){
+        tyrfingDamageTicks = i;
+    }
+    public int getTyrfingDamageTicks(){
+        return tyrfingDamageTicks;
+    }
+
+    public void setTyrfingAwakened(boolean b){
+        tyrfingAwakened = b;
+    }
+    public boolean getTyrfingAwakened(){
+        return tyrfingAwakened;
     }
 
 
@@ -184,7 +204,8 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
             //decrementing happens in the BlutgangItem postHit
         }
         //HeroesRelics.LOGGER.info("{}", f);
-
+        //HeroesRelics.LOGGER.info("tyrfing boosted damage ticks:" + ((LivingEntityInterface) user).getTyrfingDamageTicks());
+        HeroesRelics.LOGGER.info("tyrfing boosted damage ticks from playerentity:" + ((LivingEntityInterface) user).getTyrfingHits());
         return f;
     }
 

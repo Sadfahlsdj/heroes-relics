@@ -1,0 +1,14 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "hrelics:item/tyrfing"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "hrelics:parried": 1
+      },
+      "model": "hrelics:item/tyrfingawakened"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "hrelics:item/tyrfing",
+  "textures": {
+    "layer0": "hrelics:item/tyrfingawakened"
+  }
+}
