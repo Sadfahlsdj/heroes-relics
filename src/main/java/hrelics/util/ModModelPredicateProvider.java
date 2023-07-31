@@ -26,7 +26,7 @@ public class ModModelPredicateProvider {
         });
         //tyrfing - currently not working
         ModelPredicateProviderRegistry.register(ModItems.Tyrfing, new Identifier("parried"), (stack, world, entity, seed) -> {
-            if(entity != null && ((LivingEntityInterface) entity).getTyrfingHits() > 0 && entity.getActiveItem() == stack){
+            if(entity != null && ((LivingEntityInterface) entity).getTyrfingDamageTicks() > 0){ //true if serverworld false if clientworld
                 return 1;
             }
             else{

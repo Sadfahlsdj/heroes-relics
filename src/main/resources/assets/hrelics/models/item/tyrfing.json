@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "hrelics:parried": 1
+        "parried": 1
       },
       "model": "hrelics:item/tyrfingawakened"
     }

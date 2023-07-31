@@ -7,6 +7,7 @@ import hrelics.item.custom.LivingEntityInterface;
 import hrelics.item.custom.PlayerEntityInterface;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -28,12 +29,14 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-import static hrelics.networking.ModMessages.NAGAPARTICLE;
-import static hrelics.networking.ModMessages.VALFLAMEPARTICLE;
+import static hrelics.networking.ModMessages.*;
+import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_ATTACK_DAMAGE;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements PlayerEntityInterface {
@@ -129,8 +132,7 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
     int valflameSelfDamageTicks = 0;
 
     int tyrfingDamageTicks = 0;
-
-    boolean tyrfingAwakened = false;
+    public int tyrfingTicks;
     public int getValflameTicks(){
         return valflameSelfDamageTicks;
     }
@@ -149,20 +151,27 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         return tyrfingDamageTicks;
     }
 
-    public void setTyrfingAwakened(boolean b){
-        tyrfingAwakened = b;
-    }
-    public boolean getTyrfingAwakened(){
-        return tyrfingAwakened;
+    public void setTyrfingTicks(int i){
+        tyrfingTicks = i;
     }
 
 
     Entity t;
     PlayerEntity user = (PlayerEntity) (Object) this;
+    PlayerEntity target = (PlayerEntity) (Object) this;
+
+    DamageSource source;
+    EntityAttributeModifier tyrfingDamage = new EntityAttributeModifier("tyrfingdamage",
+            1.5, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 
     @Inject(method = "attack", at = @At("HEAD"))
     protected void getTarget(Entity target, CallbackInfo cir){
         this.t = target;
+    }
+
+    @Inject(method = "damage", at = @At("HEAD"))
+    protected void getSource(DamageSource source, float f, CallbackInfoReturnable cir){
+        this.source = source;
     }
 
     @Inject(method="attack", at = @At("HEAD"))
@@ -171,6 +180,34 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         if(user.getOffHandStack().isOf(ModItems.AegisShield) && targetEntity instanceof WardenEntity){
             targetEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 0), user);
         }
+    }
+
+    @ModifyVariable(method = "damage", at = @At("HEAD"))
+    public float damageModifications(float f){
+        if(target instanceof PlayerEntity && tyrfingTicks > 0 && !source.isOutOfWorld()){
+            f = 0;
+            target.heal(3);
+
+            //attribute for damage increase
+
+            target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).removeModifier(tyrfingDamage);
+            target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).addTemporaryModifier(tyrfingDamage);
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 0), target);
+            setTyrfingDamageTicks(100);
+            setTyrfingAwakened(true);
+
+            PacketByteBuf TyrfingTicksPacket = PacketByteBufs.create();
+            //TyrfingTicksPacket.writeText(target.getName());
+            //TyrfingTicksPacket.write
+            //TyrfingTicksPacket.writeUuid(target.getUuid());
+            TyrfingTicksPacket.writeDouble(target.getX());
+            TyrfingTicksPacket.writeDouble(target.getY());
+            TyrfingTicksPacket.writeDouble(target.getZ());
+            ServerPlayNetworking.send((ServerPlayerEntity) (PlayerEntity) target, TYRFINGTICKS, TyrfingTicksPacket);
+            System.out.println("correct player was found: " + ((PlayerEntity) target).equals(target.getWorld().getClosestPlayer(target.getX(), target.getY(), target.getZ(), 10, false)));
+
+        }
+        return f;
     }
 
     @ModifyArg(method = "attack", at = @At(value = "INVOKE",
@@ -205,7 +242,15 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         }
         //HeroesRelics.LOGGER.info("{}", f);
         //HeroesRelics.LOGGER.info("tyrfing boosted damage ticks:" + ((LivingEntityInterface) user).getTyrfingDamageTicks());
-        HeroesRelics.LOGGER.info("tyrfing boosted damage ticks from playerentity:" + ((LivingEntityInterface) user).getTyrfingHits());
+        /*if(user.getWorld() instanceof ClientWorld){
+            HeroesRelics.LOGGER.info("tyrfing predicate thing from playerentity clientworld:" + (user != null && ((LivingEntityInterface) user).getTyrfingDamageTicks() > 0));
+            HeroesRelics.LOGGER.info("clientworld tyrfing ticks:" + ((LivingEntityInterface) user).getTyrfingDamageTicks());
+        }
+        if(user.getWorld() instanceof ServerWorld){
+            HeroesRelics.LOGGER.info("tyrfing predicate thing from playerentity serverworld:" + (user != null && ((LivingEntityInterface) user).getTyrfingDamageTicks() > 0));
+            HeroesRelics.LOGGER.info("serverworld tyrfing ticks:" + ((LivingEntityInterface) user).getTyrfingDamageTicks());
+        }*/
+        //HeroesRelics.LOGGER.info("tyrfing predicate thing from playerentity:" + (user != null && ((LivingEntityInterface) user).getTyrfingHits() > 0));
         return f;
     }
 
@@ -249,6 +294,20 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
         }
         if(PaviseAegisTicks > 0){
             PaviseAegisTicks--;
+        }
+
+        //tyrfing tick stuff
+        if (tyrfingTicks > 0) {
+            tyrfingTicks--;
+        }
+        if (tyrfingDamageTicks > 0) {
+            tyrfingDamageTicks--;
+            HeroesRelics.LOGGER.info("decremented tyrfingDamageTick, value is now" + getTyrfingDamageTicks());
+        }
+
+
+        if(tyrfingDamageTicks == 0){
+            target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).removeModifier(tyrfingDamage);
         }
 
         //valflame self damage

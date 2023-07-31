@@ -5,6 +5,7 @@ import hrelics.client.particle.ValflameProjectileEntityRenderer;
 import hrelics.event.KeyInputHandler;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
+import hrelics.item.custom.LivingEntityInterface;
 import hrelics.item.custom.NagaProjectileEntity;
 import hrelics.networking.ModMessages;
 import hrelics.particle.ModParticles;
@@ -21,9 +22,15 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.text.Text;
+import net.minecraft.util.Uuids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class HrelicsClient implements ClientModInitializer {
 
@@ -98,6 +105,20 @@ public class HrelicsClient implements ClientModInitializer {
                 else{
                     client.world.addParticle(ModParticles.VALFLAME_WEAK_PARTICLE, true, x, y, z, 0, 30, 0);
                 }
+            });
+        }));
+
+        ClientPlayNetworking.registerGlobalReceiver(ModMessages.TYRFINGTICKS, ((client, handler, buf, responseSender) -> {
+            //Text t = buf.readText();
+            //UUID u = buf.readUuid();
+            double x = buf.readDouble();
+            double y = buf.readDouble();
+            double z = buf.readDouble();
+            PlayerEntity p = client.world.getClosestPlayer(x, y, z, 10, false);
+
+
+            client.execute(() -> {
+                ((LivingEntityInterface) p).setTyrfingDamageTicks(100);
             });
         }));
     }

@@ -27,15 +27,12 @@ public class TyrfingItem extends SwordItem {
         ItemStack itemStack = user.getStackInHand(hand);
 
         if (!world.isClient) {
-            ((LivingEntityInterface) user).setTyrfingTicks(12);
+            ((PlayerEntityInterface) user).setTyrfingTicks(12);
             user.damage(DamageSource.OUT_OF_WORLD, 3);
         }
+        user.getItemCooldownManager().set(this, 100);
         return TypedActionResult.success(itemStack, world.isClient());
     }
 
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
-        ((LivingEntityInterface) attacker).decrementTyrfingHits();
-        return super.postHit(stack, target, attacker);
-    }
+
 }

@@ -32,6 +32,8 @@ public class ModMessages {
 
     public static final Identifier VALFLAMEPARTICLE = new Identifier(HeroesRelics.MOD_ID, "valflameparticle");
 
+    public static final Identifier TYRFINGTICKS = new Identifier(HeroesRelics.MOD_ID, "tyrfingticks");
+
 
 
     public static final Identifier ANCIENTARMORY = new Identifier(HeroesRelics.MOD_ID, "ancientarmory");

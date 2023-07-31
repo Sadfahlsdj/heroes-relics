@@ -8,9 +8,7 @@ public interface LivingEntityInterface {
 
     int tyrfingDamageTicks = 0;
 
-    boolean tyrfingAwakened = false;
 
-    int boostedTyrfingHits = 0;
     boolean isHitByNaga = false;
 
     public boolean nagaActivation = false;
@@ -54,21 +52,7 @@ public interface LivingEntityInterface {
         return tyrfingDamageTicks;
     }
 
-    public default void setTyrfingAwakened(boolean b){
 
-    }
-    public default boolean getTyrfingAwakened(){
-        return tyrfingAwakened;
-    }
 
-    public default void setTyrfingHits(int i){
 
-    }
-    public default int getTyrfingHits(){
-        return boostedTyrfingHits;
-    }
-
-    public default void decrementTyrfingHits(){
-
-    }
 }

@@ -5,6 +5,8 @@ import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
 import hrelics.item.ModToolMaterials;
 import hrelics.item.custom.LivingEntityInterface;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -16,6 +18,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,6 +32,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
+import static hrelics.networking.ModMessages.NAGAPARTICLE;
+import static hrelics.networking.ModMessages.TYRFINGTICKS;
 import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_ATTACK_DAMAGE;
 
 
@@ -63,8 +69,8 @@ public class LivingEntityMixin implements LivingEntityInterface {
            //aegis shield passive DR
            f -= 1;
        }
-
-       if(target instanceof PlayerEntity && tyrfingTicks > 0 && !source.isOutOfWorld()){
+       //TYRFING STUFF MOVED TO PLAYERENTITYMIXIN
+       /*if(target instanceof PlayerEntity && tyrfingTicks > 0 && !source.isOutOfWorld()){
            f = 0;
            target.heal(3);
 
@@ -76,8 +82,17 @@ public class LivingEntityMixin implements LivingEntityInterface {
            setTyrfingDamageTicks(100);
            setTyrfingAwakened(true);
            setTyrfingHits(3);
+           PacketByteBuf TyrfingTicksPacket = PacketByteBufs.create();
+           //TyrfingTicksPacket.writeText(target.getName());
+           //TyrfingTicksPacket.write
+           //TyrfingTicksPacket.writeUuid(target.getUuid());
+           TyrfingTicksPacket.writeDouble(target.getX());
+           TyrfingTicksPacket.writeDouble(target.getY());
+           TyrfingTicksPacket.writeDouble(target.getZ());
+           ServerPlayNetworking.send((ServerPlayerEntity) (PlayerEntity) target, TYRFINGTICKS, TyrfingTicksPacket);
+           System.out.println("correct player was found: " + ((PlayerEntity) target).equals(target.getWorld().getClosestPlayer(target.getX(), target.getY(), target.getZ(), 10, false)));
            HeroesRelics.LOGGER.info("tyrfing boosted damage ticks from livingentity:" + getTyrfingHits());
-       }
+       }*/
        //testing
        //HeroesRelics.LOGGER.info("{} {} {}", source, source.isFire(), boostedFireTicks);
        return f;
@@ -115,6 +130,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
 
     @Inject(method = "tick", at = @At("HEAD"))
     protected void decrementFireTicks(CallbackInfo ci){
+        //HeroesRelics.LOGGER.info("new tick, tyrfingDamageTick value is" + getTyrfingDamageTicks());
         if(boostedFireTicks > 0){
             //makes boostedfireticks decrement as a tick would
             boostedFireTicks--;
@@ -130,12 +146,13 @@ public class LivingEntityMixin implements LivingEntityInterface {
         }
         if (tyrfingDamageTicks > 0) {
             tyrfingDamageTicks--;
+            //HeroesRelics.LOGGER.info("decremented tyrfingDamageTick, value is now" + getTyrfingDamageTicks());
         }
 
 
-        if(boostedTyrfingHits == 0 && target instanceof PlayerEntity){
+        if(tyrfingDamageTicks == 0 && target instanceof PlayerEntity){
             target.getAttributeInstance(GENERIC_ATTACK_DAMAGE).removeModifier(tyrfingDamage);
-            setTyrfingAwakened(false);
+
         }
         Item mainHandItem = user.getMainHandStack().getItem();
         if(mainHandItem instanceof ToolItem) {
@@ -200,10 +217,7 @@ public class LivingEntityMixin implements LivingEntityInterface {
     public int tyrfingTicks;
     @Unique
     public int tyrfingDamageTicks;
-    @Unique
-    public boolean tyrfingAwakened;
-    @Unique
-    public int boostedTyrfingHits;
+
     public void setBoostedFireTicks(int i){
         boostedFireTicks = i;
 
@@ -247,23 +261,4 @@ public class LivingEntityMixin implements LivingEntityInterface {
         return tyrfingDamageTicks;
     }
 
-    public void setTyrfingAwakened(boolean b){
-        tyrfingAwakened = b;
-    }
-    public boolean getTyrfingAwakened(){
-        return tyrfingAwakened;
-    }
-
-    public void setTyrfingHits(int i){
-
-    }
-    public int getTyrfingHits(){
-        return boostedTyrfingHits;
-    }
-
-    public void decrementTyrfingHits(){
-        if(boostedTyrfingHits > 0){
-            boostedTyrfingHits--;
-        }
-    }
 }
