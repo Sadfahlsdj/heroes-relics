@@ -199,10 +199,10 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
             PacketByteBuf TyrfingTicksPacket = PacketByteBufs.create();
             //TyrfingTicksPacket.writeText(target.getName());
             //TyrfingTicksPacket.write
-            //TyrfingTicksPacket.writeUuid(target.getUuid());
-            TyrfingTicksPacket.writeDouble(target.getX());
-            TyrfingTicksPacket.writeDouble(target.getY());
-            TyrfingTicksPacket.writeDouble(target.getZ());
+            TyrfingTicksPacket.writeUuid(target.getUuid());
+            //TyrfingTicksPacket.writeDouble(target.getX());
+            //TyrfingTicksPacket.writeDouble(target.getY());
+            //TyrfingTicksPacket.writeDouble(target.getZ());
             ServerPlayNetworking.send((ServerPlayerEntity) (PlayerEntity) target, TYRFINGTICKS, TyrfingTicksPacket);
             System.out.println("correct player was found: " + ((PlayerEntity) target).equals(target.getWorld().getClosestPlayer(target.getX(), target.getY(), target.getZ(), 10, false)));
 

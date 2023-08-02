@@ -110,11 +110,11 @@ public class HrelicsClient implements ClientModInitializer {
 
         ClientPlayNetworking.registerGlobalReceiver(ModMessages.TYRFINGTICKS, ((client, handler, buf, responseSender) -> {
             //Text t = buf.readText();
-            //UUID u = buf.readUuid();
-            double x = buf.readDouble();
-            double y = buf.readDouble();
-            double z = buf.readDouble();
-            PlayerEntity p = client.world.getClosestPlayer(x, y, z, 10, false);
+            UUID u = buf.readUuid();
+            //double x = buf.readDouble();
+            //double y = buf.readDouble();
+            //double z = buf.readDouble();
+            PlayerEntity p = client.world.getPlayerByUuid(u);
 
 
             client.execute(() -> {
