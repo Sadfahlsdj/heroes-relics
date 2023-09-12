@@ -12,4 +12,4 @@ Credits:
 
 Birb - more or less everything, massive thanks to this guy's seemingly unending well of patience
 
-Vex, Nyan, and (an ethically sourced child) - sprite work
+Vex, Nyan, my favorite pokemon, and (an ethically sourced child) - sprite work
