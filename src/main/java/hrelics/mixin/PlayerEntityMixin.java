@@ -176,9 +176,11 @@ public class PlayerEntityMixin implements PlayerEntityInterface {
 
     @Inject(method="attack", at = @At("HEAD"))
     protected void aegisShieldSlow(Entity target, CallbackInfo cir){
-        LivingEntity targetEntity = (LivingEntity) target;
-        if(user.getOffHandStack().isOf(ModItems.AegisShield) && targetEntity instanceof WardenEntity){
-            targetEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 0), user);
+        if(target instanceof LivingEntity) {
+            LivingEntity targetEntity = (LivingEntity) target;
+            if (user.getOffHandStack().isOf(ModItems.AegisShield) && targetEntity instanceof WardenEntity) {
+                targetEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 0), user);
+            }
         }
     }
 

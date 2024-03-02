@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "hrelics:forseti_crypt",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1945136478,
+
+    "spacing": 50,
+
+    "separation": 20,
+
+    "type": "minecraft:random_spread"
+  }
+}
