@@ -4,6 +4,7 @@
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
 		"ExampleMixin",
+		"ChestBlockEntityMixin",
 		"PlayerEntityMixin",
 		"LivingEntityMixin",
 		"PersistentProjectileEntityMixin",

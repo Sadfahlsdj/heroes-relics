@@ -1,5 +1,6 @@
 package hrelics;
 
+import hrelics.block.ModBlocks;
 import hrelics.configs.ModConfigs;
 import hrelics.item.ModItemGroup;
 import hrelics.item.ModItems;
@@ -44,7 +45,9 @@ public class HeroesRelics implements ModInitializer {
 		ModConfigs.registerConfigs();
 
 		ModItemGroup.registerModItemGroup();
+		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
+
 		//registerModItemGroup has to go on top of registerModItems
 
 		//LOGGER.info("Hello Fabric world!");

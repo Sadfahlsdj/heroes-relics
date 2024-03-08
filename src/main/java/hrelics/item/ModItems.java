@@ -1,6 +1,7 @@
 package hrelics.item;
 
 import hrelics.HeroesRelics;
+import hrelics.block.ModBlocks;
 import hrelics.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -130,6 +131,7 @@ public class ModItems {
         addToItemGroup(ModItemGroup.RELICITEMS, Valflame);
         //tyrfing
         addToItemGroup(ModItemGroup.RELICITEMS, Tyrfing);
+        addToItemGroup(ModItemGroup.RELICITEMS, ModBlocks.CRYPT_CHEST_ITEM);
     }
 
     public static void addToItemGroup(ItemGroup group, Item item){

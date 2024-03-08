@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "hrelics:block/crypt_chest"
+    }
+  }
+}
