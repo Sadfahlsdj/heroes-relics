@@ -56,8 +56,7 @@ public class ChestBlockEntityMixin {
 
             ArrayList<TntEntity> tntEntities = new ArrayList<TntEntity>();
 
-            TntEntity tt = new TntEntity(EntityType.TNT, player.getWorld());
-            tt.setPos(x, y - 2, z);
+            TntEntity tt = new TntEntity(player.getWorld(), x, y - 2, z, player);
 
             tntEntities.add(tt);
             int[] relativeCoordList1 = {-1, 1};
@@ -66,8 +65,8 @@ public class ChestBlockEntityMixin {
             int[] yRelativeCoordList = {1, 2};
             for(int xtemp : relativeCoordList1){
                 for(int ztemp : relativeCoordList1) {
-                    TntEntity t = new TntEntity(EntityType.TNT, player.getWorld());
-                    t.setPos(x + xtemp, y - 1, z + ztemp);
+                    TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y - 1, z + ztemp,
+                            player);
                     tntEntities.add(t);
                 }
             }
@@ -75,8 +74,8 @@ public class ChestBlockEntityMixin {
             for(int xtemp : relativeCoordList2){
                 for(int ztemp : relativeCoordList3) {
                     for(int ytemp : yRelativeCoordList) {
-                        TntEntity t = new TntEntity(EntityType.TNT, player.getWorld());
-                        t.setPos(x + xtemp, y + ytemp, z + ztemp);
+                        TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y + ytemp, z + ztemp,
+                                player);
                         tntEntities.add(t);
                     }
                 }
@@ -85,8 +84,8 @@ public class ChestBlockEntityMixin {
             for(int xtemp : relativeCoordList3){
                 for(int ztemp : relativeCoordList2) {
                     for(int ytemp : yRelativeCoordList) {
-                        TntEntity t = new TntEntity(EntityType.TNT, player.getWorld());
-                        t.setPos(x + xtemp, y + ytemp, z + ztemp);
+                        TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y + ytemp, z + ztemp,
+                                player);
                         tntEntities.add(t);
                     }
                 }
