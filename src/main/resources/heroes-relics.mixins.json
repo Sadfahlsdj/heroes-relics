@@ -5,6 +5,7 @@
 	"mixins": [
 		"ExampleMixin",
 		"ChestBlockEntityMixin",
+		"ChestBlockEntityAccessor",
 		"PlayerEntityMixin",
 		"LivingEntityMixin",
 		"PersistentProjectileEntityMixin",
