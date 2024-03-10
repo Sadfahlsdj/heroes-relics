@@ -49,11 +49,6 @@ public class ChestBlockEntityMixin {
         int z = this.p.getZ();
 
         if (this.nb.equals("forseti_crypt_chest")) {
-            // HeroesRelics.LOGGER.info("if you see this message your dogshit worked");
-            /*TntEntity tntEntity = new TntEntity(EntityType.TNT, player.getWorld());
-            tntEntity.setPos(player.getX(), player.getY(), player.getZ());
-            */
-
             ArrayList<TntEntity> tntEntities = new ArrayList<TntEntity>();
 
             TntEntity tt = new TntEntity(player.getWorld(), x, y - 2, z, player);
@@ -106,7 +101,6 @@ public class ChestBlockEntityMixin {
                     // w.emitGameEvent((Entity) player, GameEvent.PRIME_FUSE, this.p);
                 }
             }
-            HeroesRelics.LOGGER.info("blockpos: {}", this.p);
             // BlockPos a = this.pos;
             //BlockPos a = (ChestBlockEntity)(Object) this.pos;
         }
