@@ -32,7 +32,7 @@ public class ChestBlockEntityMixin {
         if(nbt.contains("forseti_crypt_chest")) {
             this.nb = String.valueOf(nbt.getString("forseti_crypt_chest"));
             //this.p = ChestBlockEntity.posFromNbt(nbt);
-            HeroesRelics.LOGGER.info("nbt {} is being read", this.nb);
+            //HeroesRelics.LOGGER.info("nbt {} is being read", this.nb);
         }
     }
     @Inject(method = "writeNbt", at = @At("HEAD"))
@@ -57,7 +57,7 @@ public class ChestBlockEntityMixin {
             int[] relativeCoordList1 = {-1, 1};
             int[] relativeCoordList2 = {-2, 2};
             int[] relativeCoordList3 = {2, 3, 4, -2, -3, -4};
-            int[] yRelativeCoordList = {1, 2};
+            int[] yRelativeCoordList = {-1, -2};
             for(int xtemp : relativeCoordList1){
                 for(int ztemp : relativeCoordList1) {
                     TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y - 1, z + ztemp,
@@ -66,25 +66,37 @@ public class ChestBlockEntityMixin {
                 }
             }
 
-            for(int xtemp : relativeCoordList2){
+            /*for(int xtemp : relativeCoordList2){
                 for(int ztemp : relativeCoordList3) {
-                    for(int ytemp : yRelativeCoordList) {
-                        TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y + ytemp, z + ztemp,
-                                player);
-                        tntEntities.add(t);
-                    }
+                    int ytemp = -1;
+                    TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y + ytemp, z + ztemp,
+                            player);
+                    tntEntities.add(t);
                 }
             }
 
             for(int xtemp : relativeCoordList3){
                 for(int ztemp : relativeCoordList2) {
-                    for(int ytemp : yRelativeCoordList) {
-                        TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y + ytemp, z + ztemp,
-                                player);
-                        tntEntities.add(t);
-                    }
+                    int ytemp = -1;
+                    TntEntity t = new TntEntity(player.getWorld(), x + xtemp, y + ytemp, z + ztemp,
+                            player);
+                    tntEntities.add(t);
                 }
-            }
+            }*/
+            TntEntity t1 = new TntEntity(player.getWorld(), x + 2, y - 1, z + 2,
+                    player);
+            TntEntity t2 = new TntEntity(player.getWorld(), x + 2, y - 1, z - 2,
+                    player);
+            TntEntity t3 = new TntEntity(player.getWorld(), x - 2, y - 1, z + 2,
+                    player);
+            TntEntity t4 = new TntEntity(player.getWorld(), x - 2, y - 1, z - 2,
+                    player);
+            tntEntities.add(t1);
+            tntEntities.add(t2);
+            tntEntities.add(t3);
+            tntEntities.add(t4);
+
+
 
             /*
             tnt relative positions to the chest:
