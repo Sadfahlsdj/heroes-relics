@@ -4,11 +4,14 @@ import hrelics.item.custom.ServerWorldInterface;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 //import net.minecraft.util.Pair;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -30,6 +33,8 @@ import static hrelics.networking.ModMessages.NAGAPARTICLE;
 public class ServerWorldMixin implements ServerWorldInterface {
 
     public final Queue<Triple<Long, Vec3d, Entity>> nagaTomeQueue = new PriorityQueue<>();
+
+    public final Queue<Triple<Long, Vec3d, World>> nagaCryptLightningQueue = new PriorityQueue<>();
     public final ArrayList<MutableTriple<Long, ServerPlayerEntity, Entity>> nagaParticleList = new ArrayList<>();
 
 
@@ -38,6 +43,11 @@ public class ServerWorldMixin implements ServerWorldInterface {
     public void scheduleDamageEvent(Entity attacker, Vec3d pos){
         //update the 30 to another value to change delay before attack
         nagaTomeQueue.add(Triple.of(attacker.getWorld().getTime() + 20L, pos, attacker));
+    }
+
+    public void scheduleNagaLightning(Long delay, Vec3d pos, World w){
+        // used to spawn delayed lightning bolts
+        nagaCryptLightningQueue.add(Triple.of(w.getTime() + delay, pos, w));
     }
 
     public void scheduleNagaParticles(Entity target, ServerPlayerEntity player, World world){
@@ -63,6 +73,21 @@ public class ServerWorldMixin implements ServerWorldInterface {
                     .forEach((e) -> e.damage(DamageSource.MAGIC, 20));
             nagaTomeQueue.poll();
         }
+
+        Triple<Long, Vec3d, World> l;
+
+        // lightning when opening the naga tome chest
+        while((l = nagaCryptLightningQueue.peek()) != null && l.getLeft() <= w.getTime()){
+            // summons lightning after delay
+            // super similar code to the above loop for naga tome damage event
+            Vec3d pos = l.getMiddle();
+            LightningEntity l1 = new LightningEntity(EntityType.LIGHTNING_BOLT, w);
+            l1.setPosition(pos);
+            w.spawnEntity(l1);
+            nagaCryptLightningQueue.poll();
+        }
+
+
 
         //particles
         for(MutableTriple<Long, ServerPlayerEntity, Entity> p : nagaParticleList){

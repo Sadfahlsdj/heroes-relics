@@ -21,6 +21,10 @@ public interface ServerWorldInterface {
 
     }
 
+    public default void scheduleNagaLightning(Long delay, Vec3d pos, World w){
+        // called in ChestBlockEntityMixin to summon delayed lightning when opening the naga tome chest
+    }
+
     public default void nagaParticleHere(UUID u){
 
     }

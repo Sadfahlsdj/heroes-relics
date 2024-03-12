@@ -1,13 +1,17 @@
 package hrelics.mixin;
 
 import hrelics.HeroesRelics;
+import hrelics.item.custom.ServerWorldInterface;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @Mixin(ChestBlockEntity.class)
 public class ChestBlockEntityMixin {
@@ -34,11 +39,22 @@ public class ChestBlockEntityMixin {
             //this.p = ChestBlockEntity.posFromNbt(nbt);
             //HeroesRelics.LOGGER.info("nbt {} is being read", this.nb);
         }
+        if(nbt.contains("valflame_crypt_chest")) {
+            this.nb = String.valueOf(nbt.getString("valflame_crypt_chest"));
+            //this.p = ChestBlockEntity.posFromNbt(nbt);
+            //HeroesRelics.LOGGER.info("nbt {} is being read", this.nb);
+        }
+        if(nbt.contains("naga_crypt_chest")) {
+            this.nb = String.valueOf(nbt.getString("naga_crypt_chest"));
+            //this.p = ChestBlockEntity.posFromNbt(nbt);
+            //HeroesRelics.LOGGER.info("nbt {} is being read", this.nb);
+        }
     }
     @Inject(method = "writeNbt", at = @At("HEAD"))
     public void cryptChestsWrite(NbtCompound nbt, CallbackInfo ci){
         nbt.putString("forseti_crypt_chest", nb);
-        //this.p = ChestBlockEntity.posFromNbt(nbt);
+        nbt.putString("valflame_crypt_chest", nb);
+        nbt.putString("naga_crypt_chest", nb);
         // HeroesRelics.LOGGER.info("nbt {} is being written", this.nb);
     }
 
@@ -98,23 +114,41 @@ public class ChestBlockEntityMixin {
 
 
 
-            /*
-            tnt relative positions to the chest:
-            y-2
-            y-1, x and z +- 1
-            y + 1, x and z +- 2, 3, 4
-            y + 2, x and z +- 2, 3, 4
-            */
-
             World w = player.getWorld();
             for(TntEntity t : tntEntities) {
                 if (!w.isClient()) {
                     w.spawnEntity(t);
-                    // w.emitGameEvent((Entity) player, GameEvent.PRIME_FUSE, this.p);
                 }
             }
-            // BlockPos a = this.pos;
-            //BlockPos a = (ChestBlockEntity)(Object) this.pos;
+        }
+        else if (this.nb.equals("naga_crypt_chest")){
+            World w = player.getWorld();
+
+            /*LightningEntity l1 = new LightningEntity(EntityType.LIGHTNING_BOLT, w);
+            LightningEntity l2 = new LightningEntity(EntityType.LIGHTNING_BOLT, w);
+            LightningEntity l3 = new LightningEntity(EntityType.LIGHTNING_BOLT, w);
+            LightningEntity l4 = new LightningEntity(EntityType.LIGHTNING_BOLT, w);
+            l1.setPos(x + 2, y, z);
+            l2.setPos(x - 2, y, z);
+            l3.setPos(x, y, z + 2);
+            l3.setPos(x, y, z - 2);
+            if (!w.isClient()){
+                w.spawnEntity(l1);
+                w.spawnEntity(l2);
+                w.spawnEntity(l3);
+                w.spawnEntity(l4);
+            }*/
+
+            Random r = new Random();
+
+            // summons 10 lightning strikes each 0.4 seconds apart
+            for(int i = 0; i < 80; i += 8) {
+                int xmod = r.nextInt(8) - 4;
+                int zmod = r.nextInt(8) - 4;
+                Vec3d pos = new Vec3d(x + xmod, y, z + zmod);
+
+                ((ServerWorldInterface) (ServerWorld) w).scheduleNagaLightning((long) i, pos, w);
+            }
         }
     }
 }
